@@ -1,0 +1,76 @@
+const products = [
+  // iPhones
+  {id:'iphone1',title:'iPhone 13 Pro Max',desc:'128GB • Cinza',price:'R$5.999',category:'iphone',images:['https://source.unsplash.com/400x400/?iphone,13,front','https://source.unsplash.com/400x400/?iphone,13,side','https://source.unsplash.com/400x400/?iphone,13,back'],buy:'#'},
+  {id:'iphone2',title:'iPhone 14 Pro',desc:'256GB • Dourado',price:'R$7.499',category:'iphone',images:['https://source.unsplash.com/400x400/?iphone,14,front','https://source.unsplash.com/400x400/?iphone,14,side','https://source.unsplash.com/400x400/?iphone,14,back'],buy:'#'},
+
+  // iPads
+  {id:'ipad1',title:'iPad Pro 12.9',desc:'128GB • Cinza',price:'R$7.999',category:'ipad',images:['https://source.unsplash.com/400x400/?ipad,pro,front','https://source.unsplash.com/400x400/?ipad,pro,side','https://source.unsplash.com/400x400/?ipad,pro,back'],buy:'#'},
+
+  // Apple Watch
+  {id:'watch1',title:'Apple Watch Series 7',desc:'Alumínio • 41mm',price:'R$2.799',category:'watch',images:['https://source.unsplash.com/400x400/?applewatch,series7,front','https://source.unsplash.com/400x400/?applewatch,series7,side','https://source.unsplash.com/400x400/?applewatch,series7,back'],buy:'#'},
+
+  // MacBooks
+  {id:'mac1',title:'MacBook Air M1',desc:'256GB • Prata',price:'R$9.499',category:'mac',images:['https://source.unsplash.com/400x400/?macbook,air,m1,front','https://source.unsplash.com/400x400/?macbook,air,m1,side','https://source.unsplash.com/400x400/?macbook,air,m1,back'],buy:'#'},
+  {id:'mac2',title:'MacBook Pro 14"',desc:'512GB • Cinza',price:'R$14.999',category:'mac',images:['https://source.unsplash.com/400x400/?macbook,pro,14,front','https://source.unsplash.com/400x400/?macbook,pro,14,side','https://source.unsplash.com/400x400/?macbook,pro,14,back'],buy:'#'}
+];
+
+function createCard(p){
+  const el = document.createElement('div'); el.className='card';
+  el.innerHTML = `<img src="${p.images[0]}" alt="${p.title}">
+    <div class="title">${p.title}</div>
+    <div class="meta">${p.desc}</div>
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-top:8px">
+      <div class="price">${p.price}</div>
+      <div class="actions">
+        <button class="btn" data-id="${p.id}">Visualizar</button>
+        <a class="btn secondary" href="${p.buy}">Comprar</a>
+      </div>
+    </div>`;
+  return el;
+}
+
+const grid = document.getElementById('products-grid');
+const ipadsGrid = document.getElementById('ipads-grid');
+const watchGrid = document.getElementById('watch-grid');
+const macGrid = document.getElementById('mac-grid');
+products.forEach(p=>{
+  const node = createCard(p);
+  if(p.category==='iphone') grid.appendChild(node);
+  if(p.category==='ipad') ipadsGrid.appendChild(node);
+  if(p.category==='watch') watchGrid.appendChild(node);
+  if(p.category==='mac') macGrid.appendChild(node);
+});
+
+// Modal
+const modalBg = document.getElementById('modal');
+const modalTitle = document.getElementById('modal-title');
+const modalSub = document.getElementById('modal-sub');
+const modalMain = document.getElementById('modal-main');
+const modalThumbs = document.getElementById('modal-thumbs');
+const modalBuy = document.getElementById('modal-buy');
+document.addEventListener('click', (e)=>{
+  const btn = e.target.closest('button[data-id]');
+  if(btn){ openProduct(btn.dataset.id); }
+});
+document.getElementById('modal-close').addEventListener('click', ()=>{modalBg.style.display='none'});
+modalBg.addEventListener('click', (e)=>{if(e.target===modalBg) modalBg.style.display='none'});
+
+function openProduct(id){
+  const p = products.find(x=>x.id===id);
+  if(!p) return;
+  modalTitle.textContent = p.title;
+  modalSub.textContent = `${p.desc} • ${p.price}`;
+  modalMain.src = p.images[0];
+  modalThumbs.innerHTML='';
+  p.images.forEach((src,i)=>{
+    const t = document.createElement('img'); t.src=src; if(i===0) t.classList.add('active');
+    t.addEventListener('click', ()=>{ 
+      modalMain.src=src; 
+      document.querySelectorAll('#modal-thumbs img').forEach(im=>im.classList.remove('active')); 
+      t.classList.add('active'); 
+    });
+    modalThumbs.appendChild(t);
+  });
+  modalBuy.onclick=()=>{window.location.href=p.buy};
+  modalBg.style.display='flex';
+}
