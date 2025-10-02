@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Eletroniks Store</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif;}
+body{background:#f5f5f7;color:#1d1d1f;}
+header{text-align:center;padding:2rem;background:#000;color:#fff;}
+header h1{font-size:2.2rem;margin-bottom:0.5rem;}
+header p{margin-top:0.5rem;}
+.produtos{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.5rem;padding:2rem;max-width:1200px;margin:auto;}
+.card{background:#fff;border-radius:12px;padding:1rem;box-shadow:0 4px 8px rgba(0,0,0,0.1);text-align:center;transition:transform 0.2s;}
+.card:hover{transform:translateY(-5px);}
+.card img{width:100%;height:200px;object-fit:contain;border-radius:8px;cursor:pointer;}
+.card h3{margin:1rem 0 0.5rem;}
+.card p{margin:0.3rem 0;}
+.card .descricao{font-size:0.9rem;color:#555;margin:0.5rem 0;}
+.card button{margin-top:1rem;padding:0.7rem 1.2rem;background:#0071e3;color:white;border:none;border-radius:8px;cursor:pointer;}
+.card button:hover{background:#005bb5;}
+footer{background:#000;color:#fff;text-align:center;padding:1.5rem;margin-top:2rem;}
+.modal{display:none;position:fixed;z-index:1000;left:0;top:0;width:100%;height:100%;background:rgba(0,0,0,0.8);padding-top:50px;}
+.modal img{display:block;margin:auto;max-width:80%;max-height:80%;}
+.fechar{position:absolute;top:20px;right:35px;color:#fff;font-size:2rem;cursor:pointer;}
+</style>
+</head>
+<body>
+<header>
+<h1>Eletroniks Store</h1>
+<p>Todos os produtos Apple com 45% de desconto!</p>
+</header>
+<main>
+<section class="produtos" id="produtos"></section>
+</main>
+<footer>
+<p>&copy; 2025 Eletroniks Store - Todos os direitos reservados</p>
+</footer>
+
+<div class="modal" id="modal">
+<span class="fechar" id="fechar">&times;</span>
+<img id="modal-img" src="" alt="Produto">
+</div>
+
+<script>
+// Lista completa de produtos
+const produtos = [
+  // iPhones
+  {nome:"iPhone 13 Pro Max", preco:"R$ 4.050", descricao:"Tela Super Retina XDR, câmera tripla avançada, desempenho Pro.", imagens:[
+    "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone13pro-digitalmat-gallery-1-202209?wid=600&hei=600&fmt=jpeg",
+    "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone13pro-digitalmat-gallery-2-202209?wid=600&hei=600&fmt=jpeg",
+    "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone13pro-digitalmat-gallery-3-202209?wid=600&hei=600&fmt=jpeg"
+  ], checkout:"#"},
+  {nome:"iPhone 14 Pro", preco:"R$ 4.950", descricao:"Design elegante, câmera aprimorada e desempenho excepcional.", imagens:[
+    "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone14pro-digitalmat-gallery-1-202209?wid=600&hei=600&fmt=jpeg",
+    "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone14pro-digitalmat-gallery-2-202209?wid=600&hei=600&fmt=jpeg",
+    "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone14pro-digitalmat-gallery-3-202209?wid=600&hei=600&fmt=jpeg"
+  ], checkout:"#"},
+  {nome:"iPhone 14 Pro Max", preco:"R$ 5.300", descricao:"Maior tela, câmeras profissionais e bateria duradoura.", imagens:[
+    "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone14promax-digitalmat-gallery-1-202209?wid=600&hei=600&fmt=jpeg",
+    "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone14promax-digitalmat-gallery-2-202209?wid=600&hei=600&fmt=jpeg",
+    "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone14promax-digitalmat-gallery-3-202209?wid=600&hei=600&fmt=jpeg"
+  ], checkout:"#"},
+  {nome:"iPhone 15", preco:"R$ 5.450", descricao:"Alta performance, câmera avançada e iOS mais recente.", imagens:[
+    "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone15-digitalmat-gallery-1-202309?wid=600&hei=600&fmt=jpeg",
+    "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone15-digitalmat-gallery-2-202309?wid=600&hei=600&fmt=jpeg",
+    "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone15-digitalmat-gallery-3-202309?wid=600&hei=600&fmt=jpeg"
+  ], checkout:"#"},
+  {nome:"iPhone 15 Plus", preco:"R$ 5.600", descricao:"Tela grande, desempenho potente e ótima bateria.", imagens:[
+    "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone15plus-digitalmat-gallery-1-202309?wid=600&hei=600&fmt=jpeg",
+    "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone15plus-digitalmat-gallery-2-202309?wid=600&hei=600&fmt=jpeg",
+    "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone15plus-digitalmat-gallery-3-202309?wid=600&hei=600&fmt=jpeg"
+  ], checkout:"#"},
+  // iPads
+  {nome:"iPad Air", preco:"R$ 2.975", descricao:"Leve e potente, ideal para estudos e trabalho.", imagens:[
+    "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/ipad-air-gallery1-202206?wid=600&hei=600&fmt=jpeg",
+    "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/ipad-air-gallery2-202206?wid=600&hei=600&fmt=jpeg",
+    "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/ipad-air-gallery3-202206?wid=600&hei=600&fmt=jpeg"
+  ], checkout:"#"},
+  {nome:"iPad Pro 11", preco:"R$ 4.375", descricao:"Tela Liquid Retina, desempenho Pro e compatível com Apple Pencil.", imagens:[
+    "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/ipad-pro-11-gallery1-202206?wid=600&hei=600&fmt=jpeg",
+    "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/ipad-pro-11-gallery2-202206?wid=600&hei=600&fmt=jpeg",
+    "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/ipad-pro-11-gallery3-202206?wid=600&hei=600&fmt=jpeg"
+  ], checkout:"#"},
+  {nome:"iPad Pro 12.9", preco:"R$ 5.700", descricao:"Máximo desempenho, ideal para designers e criadores.", imagens:[
+    "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/ipad-pro-12-9-gallery1-202206?wid=600&hei=600&fmt=jpeg",
+    "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/ipad-pro-12-9-gallery2-202206?wid=600&hei=600&fmt=jpeg",
+    "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/ipad-pro-12-9-gallery3-202206?wid=600&hei=600&fmt=jpeg"
+  ], checkout:"#"},
+  // Apple Watch 9 modelos
+  {nome:"Apple Watch Series 7", preco:"R$ 1.580", descricao:"Monitoramento avançado de saúde e fitness.", imagens:[
+    "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/watch-s7-digitalmat-gallery-1-202109?wid=600&hei=600&fmt=jpeg",
+    "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/watch-s7-digitalmat-gallery-2-202109?wid=600&hei=600&fmt=jpeg",
+    "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/watch-s7-digitalmat-gallery-3-202109?wid=600&hei=600&fmt=jpeg"
+  ], checkout:"#"},
+  {nome:"Apple Watch Series 8", preco:"R$ 1.705", descricao:"Saúde, performance e design elegante.", imagens:[
+    "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/watch-s8-digitalmat-gallery-1-202209?wid=600&hei=600&fmt=jpeg",
+    "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/watch-s8-digitalmat-gallery-2-202209?wid=600&hei=600&fmt=jpeg",
+    "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/watch-s8-digitalmat-gallery-3-202209?wid=600&hei=600&fmt=jpeg"
+  ], checkout:"#"},
+  {nome:"Apple Watch Series 9", preco:"R$ 1.980", descricao:"Novas funcionalidades e monitoramento avançado.", imagens:[
+    "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/watch-s9-digitalmat-gallery-1-202309?wid=600&hei=600&fmt=jpeg",
+    "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/watch-s9-digitalmat-gallery-2-202309?wid=600&hei=600&fmt=jpeg",
+    "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/watch-s9-digitalmat-gallery-3-202309?wid=600&hei=600&fmt=jpeg"
+  ], checkout:"#"},
+  {nome:"Apple Watch Ultra", preco:"R$ 2.680", descricao:"Durabilidade extrema, perfeito para esportes radicais.", imagens:[
+    "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/watch-ultra-digitalmat-gallery-1-202209?wid=600&hei=600&fmt=jpeg",
+    "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/watch-ultra-digitalmat-gallery-2-202209?wid=600&hei=600&fmt=jpeg",
+    "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/watch-ultra-digitalmat-gallery-3-202209?wid=600&hei=600&fmt=jpeg"
+  ], checkout:"#"},
+  {nome:"Apple Watch SE", preco:"R$ 1.070", descricao:"Essencial e acessível, com recursos de saúde.", imagens:[
+    "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/watch-se-digitalmat-gallery-1-202209?wid=600&hei=600&fmt=jpeg",
+    "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/watch-se-digitalmat-gallery-2-202209?wid=600&hei=600&fmt=jpeg",
+    "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/watch-se-digitalmat-gallery-3-202209?wid=600&hei=600&fmt=jpeg"
+  ], checkout:"#"},
+  {nome:"Apple Watch Nike", preco:"R$ 1.705", descricao:"Design esportivo e integração com apps de corrida.", imagens:[
+    "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/watch-nike-digitalmat-gallery-1-202209?wid=600&hei=600&fmt=jpeg",
+    "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/watch-nike-digitalmat-gallery-2-202209?wid=600&hei=600&fmt=jpeg",
+    "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/watch-nike-digitalmat-gallery-3-202209?wid=600&hei=600&fmt=jpeg"
+  ], checkout:"#"},
+  {nome:"Apple Watch Hermès", preco:"R$ 2.950", descricao:"Luxo e estilo, ideal para quem deseja exclusividade.", imagens:[
+    "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/watch-hermes-digitalmat-gallery-1-202209?wid=600&hei=600&fmt=jpeg",
+    "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/watch-hermes-digitalmat-gallery-2-202209?wid=600&hei=600&fmt=jpeg",
+    "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/watch-hermes-digitalmat-gallery-3-202209?wid=600&hei=600&fmt=jpeg"
+  ], checkout:"#"},
+  {nome:"Apple Watch Edition", preco:"R$ 2.575", descricao:"Acabamento premium com funcionalidades avançadas.", imagens:[
+    "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/watch-edition-digitalmat-gallery-1-202209?wid=600&hei=600&fmt=jpeg",
+    "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/watch-edition-digitalmat-gallery-2-202209?wid=600&hei=600&fmt=jpeg",
+    "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/watch-edition-digitalmat-gallery-3-202209?wid=600&hei=600&fmt=jpeg"
+  ], checkout:"#"},
+  // MacBooks 4 modelos
+  {nome:"MacBook Air M2", preco:"R$ 5.222", descricao:"Leve, fino e com desempenho excepcional para todas tarefas.", imagens:[
+    "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/mb-air-midnight-gallery1-202206?wid=600&hei=600&fmt=jpeg",
+    "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/mb-air-midnight-gallery2-202206?wid=600&hei=600&fmt=jpeg",
+    "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/mb-air-midnight-gallery3-202206?wid=600&hei=600&fmt=jpeg"
+  ], checkout:"#"},
+  {nome:"MacBook Pro 13", preco:"R$ 5.700", descricao:"Potência e mobilidade para profissionais.", imagens:[
+    "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/mbp-13-spacegray-gallery1-202206?wid=600&hei=600&fmt=jpeg",
+    "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/mbp-13-spacegray-gallery2-202206?wid=600&hei=600&fmt=jpeg",
+    "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/mbp-13-spacegray-gallery3-202206?wid=600&hei=600&fmt=jpeg"
+  ], checkout:"#"},
+  {nome:"MacBook Pro 14", preco:"R$ 10.000", descricao:"Desempenho extremo com display Liquid Retina XDR.", imagens:[
+    "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/mbp-14-silver-gallery1-202206?wid=600&hei=600&fmt=jpeg",
+    "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/mbp-14-silver-gallery2-202206?wid=600&hei=600&fmt=jpeg",
+    "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/mbp-14-silver-gallery3-202206?wid=600&hei=600&fmt=jpeg"
+  ], checkout:"#"},
+  {nome:"MacBook Pro 16", preco:"R$ 11.200", descricao:"Máximo desempenho para profissionais criativos.", imagens:[
+    "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/mbp-16-spacegray-gallery1-202206?wid=600&hei=600&fmt=jpeg",
+    "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/mbp-16-spacegray-gallery2-202206?wid=600&hei=600&fmt=jpeg",
+    "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/mbp-16-spacegray-gallery3-202206?wid=600&hei=600&fmt=jpeg"
+  ], checkout:"#"}
+];
+
+// Renderizar produtos
+const container=document.getElementById("produtos");
+produtos.forEach((p)=>{
+  const card=document.createElement("div");
+  card.className="card";
+  card.innerHTML=`
+    <img src="${p.imagens[0]}" alt="${p.nome}" class="produto-img">
+    <h3>${p.nome}</h3>
+    <p>${p.preco}</p>
+    <p class="descricao">${p.descricao}</p>
+    <button onclick="window.location.href='${p.checkout}'">Comprar</button>
+  `;
+  container.appendChild(card);
+
+  const imgEl=card.querySelector(".produto-img");
+  imgEl.addEventListener("click",()=>abrirModal(p.imagens));
+});
+
+// Modal
+const modal=document.getElementById("modal");
+const modalImg=document.getElementById("modal-img");
+const fechar=document.getElementById("fechar");
+
+function abrirModal(imgs){
+  let index=0;
+  modal.style.display="block";
+  modalImg.src=imgs[index];
+  modalImg.onclick=()=>{
+    index=(index+1)%imgs.length;
+    modalImg.src=imgs[index];
+  };
+}
+
+fechar.onclick=()=>{modal.style.display="none";};
+</script>
+</body>
+</html>
