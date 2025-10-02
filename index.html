@@ -10,16 +10,13 @@ body{background:#f5f5f7;color:#1d1d1f;}
 header{position:relative;text-align:center;padding:3rem 1rem;background:#111;color:#fff;overflow:hidden;}
 header h1{font-size:3rem;margin-bottom:1rem;letter-spacing:2px;animation:fadeSlide 2s ease-in-out;}
 header p{font-size:1.2rem;color:#ddd;max-width:600px;margin:0 auto;animation:fadeSlide 2s 0.5s ease-in-out forwards;opacity:0;}
-@keyframes fadeSlide{
-  0%{opacity:0;transform:translateY(-30px);}
-  100%{opacity:1;transform:translateY(0);}
-}
+@keyframes fadeSlide{0%{opacity:0;transform:translateY(-30px);}100%{opacity:1;transform:translateY(0);}}
 .banner{position:relative;height:350px;background:url('https://images.unsplash.com/photo-1573497491208-6b1acb260507?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080') center/cover no-repeat;border-radius:12px;margin-top:1rem;display:flex;align-items:center;justify-content:center;overflow:hidden;}
 .banner-text{color:#fff;font-size:2.5rem;font-weight:bold;background:rgba(0,0,0,0.4);padding:1rem 2rem;border-radius:10px;animation:bannerFade 3s ease-in-out infinite alternate;}
 @keyframes bannerFade{0%{opacity:0.6;}100%{opacity:1;}}
 .container{width:90%;max-width:1200px;margin:0 auto;}
 .produtos{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:25px;margin-top:2rem;}
-.card{background:#fff;border-radius:12px;padding:1rem;box-shadow:0 8px 20px rgba(0,0,0,0.1);text-align:center;transition:transform 0.4s, box-shadow 0.4s;}
+.card{background:#fff;border-radius:12px;padding:1rem;box-shadow:0 8px 20px rgba(0,0,0,0.1);text-align:center;position:relative;transition:transform 0.4s, box-shadow 0.4s;}
 .card:hover{transform:translateY(-10px) scale(1.03);box-shadow:0 15px 30px rgba(0,0,0,0.2);}
 .card img{width:100%;height:220px;object-fit:contain;border-radius:8px;cursor:pointer;transition:transform 0.4s;}
 .card img:hover{transform:scale(1.1);}
@@ -30,8 +27,11 @@ header p{font-size:1.2rem;color:#ddd;max-width:600px;margin:0 auto;animation:fad
 .card:hover .descricao{height:80px;}
 .card .preco{font-size:1.2rem;font-weight:bold;color:#222;margin:0.5rem 0;transition:color 0.3s;}
 .card:hover .preco{color:#0071e3;}
-.card button{margin:5px 2px;padding:0.5rem 1rem;background:#0071e3;color:white;border:none;border-radius:8px;cursor:pointer;transition:all 0.3s;}
-.card button:hover{background:#005bb5;transform:scale(1.05);}
+.card button.buy{margin-top:5px;padding:0.5rem 1rem;background:transparent;color:#000;border:2px solid #000;border-radius:8px;cursor:pointer;transition:all 0.3s;font-weight:bold;}
+.card button.buy:hover{background:#000;color:#fff;}
+.arrow{position:absolute;top:50%;transform:translateY(-50%);background:#000;color:#fff;border:none;padding:0.5rem;cursor:pointer;font-size:1rem;border-radius:50%;}
+.arrow.left{left:5px;}
+.arrow.right{right:5px;}
 footer{background:#111;color:#fff;text-align:center;padding:1.5rem;margin-top:2rem;font-size:0.95rem;}
 .modal{display:none;position:fixed;z-index:1000;left:0;top:0;width:100%;height:100%;background:rgba(0,0,0,0.9);padding-top:50px;animation:fadeInModal 0.3s;}
 @keyframes fadeInModal{0%{opacity:0;}100%{opacity:1;}}
@@ -62,9 +62,8 @@ footer{background:#111;color:#fff;text-align:center;padding:1.5rem;margin-top:2r
 <span class="fechar" id="fechar">&times;</span>
 <img id="modal-img" src="" alt="Produto">
 </div>
-
 <script>
-// Lista COMPLETA de produtos
+// Lista completa de produtos
 const produtos=[
   // iPhones
   {nome:"iPhone 13 Pro Max",preco:"R$ 4.050",descricao:"Tela Super Retina XDR, câmera tripla avançada, desempenho Pro.",imagens:[
@@ -83,6 +82,10 @@ const produtos=[
 "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone15-digitalmat-gallery-1-202309?wid=600&hei=600&fmt=jpeg",
 "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone15-digitalmat-gallery-2-202309?wid=600&hei=600&fmt=jpeg",
 "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone15-digitalmat-gallery-3-202309?wid=600&hei=600&fmt=jpeg"],checkout:"#"},
+  {nome:"iPhone 15 Pro Max",preco:"R$ 6.200",descricao:"O topo de linha da Apple com desempenho extremo e câmera avançada.",imagens:[
+"https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone15promax-digitalmat-gallery-1-202309?wid=600&hei=600&fmt=jpeg",
+"https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone15promax-digitalmat-gallery-2-202309?wid=600&hei=600&fmt=jpeg",
+"https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone15promax-digitalmat-gallery-3-202309?wid=600&hei=600&fmt=jpeg"],checkout:"#"},
   // iPads
   {nome:"iPad Air",preco:"R$ 2.975",descricao:"Leve e potente, ideal para estudos e trabalho.",imagens:[
 "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/ipad-air-gallery1-202206?wid=600&hei=600&fmt=jpeg",
@@ -92,10 +95,55 @@ const produtos=[
 "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/ipad-pro-11-gallery1-202206?wid=600&hei=600&fmt=jpeg",
 "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/ipad-pro-11-gallery2-202206?wid=600&hei=600&fmt=jpeg",
 "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/ipad-pro-11-gallery3-202206?wid=600&hei=600&fmt=jpeg"],checkout:"#"},
-  // Apple Watch e MacBooks continuar...
+  // Apple Watch (9 modelos)
+  {nome:"Apple Watch S9",preco:"R$ 2.500",descricao:"Monitoramento avançado de saúde e fitness.",imagens:[
+"https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/watch-s9-digitalmat-gallery-1-202309?wid=600&hei=600&fmt=jpeg",
+"https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/watch-s9-digitalmat-gallery-2-202309?wid=600&hei=600&fmt=jpeg",
+"https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/watch-s9-digitalmat-gallery-3-202309?wid=600&hei=600&fmt=jpeg"],checkout:"#"},
+  {nome:"Apple Watch Ultra",preco:"R$ 3.200",descricao:"Design robusto e funcionalidades avançadas.",imagens:[
+"https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/watch-ultra-digitalmat-gallery-1-202209?wid=600&hei=600&fmt=jpeg",
+"https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/watch-ultra-digitalmat-gallery-2-202209?wid=600&hei=600&fmt=jpeg",
+"https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/watch-ultra-digitalmat-gallery-3-202209?wid=600&hei=600&fmt=jpeg"],checkout:"#"},
+  {nome:"Apple Watch SE",preco:"R$ 1.400",descricao:"Funcionalidades essenciais de monitoramento de saúde e conectividade.",imagens:[
+"https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/watch-se-digitalmat-gallery-1-202209?wid=600&hei=600&fmt=jpeg",
+"https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/watch-se-digitalmat-gallery-2-202209?wid=600&hei=600&fmt=jpeg",
+"https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/watch-se-digitalmat-gallery-3-202209?wid=600&hei=600&fmt=jpeg"],checkout:"#"},
+  {nome:"Apple Watch S8",preco:"R$ 2.200",descricao:"Ótimo custo-benefício e desempenho confiável.",imagens:[
+"https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/watch-s8-digitalmat-gallery-1-202209?wid=600&hei=600&fmt=jpeg",
+"https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/watch-s8-digitalmat-gallery-2-202209?wid=600&hei=600&fmt=jpeg",
+"https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/watch-s8-digitalmat-gallery-3-202209?wid=600&hei=600&fmt=jpeg"],checkout:"#"},
+  {nome:"Apple Watch Nike",preco:"R$ 2.600",descricao:"Versão com pulseira esportiva e apps da Nike.",imagens:[
+"https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/watch-nike-digitalmat-gallery-1-202209?wid=600&hei=600&fmt=jpeg",
+"https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/watch-nike-digitalmat-gallery-2-202209?wid=600&hei=600&fmt=jpeg",
+"https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/watch-nike-digitalmat-gallery-3-202209?wid=600&hei=600&fmt=jpeg"],checkout:"#"},
+  {nome:"Apple Watch Hermès",preco:"R$ 4.800",descricao:"Luxo e estilo com pulseiras premium.",imagens:[
+"https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/watch-hermes-digitalmat-gallery-1-202209?wid=600&hei=600&fmt=jpeg",
+"https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/watch-hermes-digitalmat-gallery-2-202209?wid=600&hei=600&fmt=jpeg",
+"https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/watch-hermes-digitalmat-gallery-3-202209?wid=600&hei=600&fmt=jpeg"],checkout:"#"},
+  {nome:"Apple Watch Edition",preco:"R$ 6.000",descricao:"Edição premium com materiais exclusivos.",imagens:[
+"https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/watch-edition-digitalmat-gallery-1-202209?wid=600&hei=600&fmt=jpeg",
+"https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/watch-edition-digitalmat-gallery-2-202209?wid=600&hei=600&fmt=jpeg",
+"https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/watch-edition-digitalmat-gallery-3-202209?wid=600&hei=600&fmt=jpeg"],checkout:"#"},
+  // MacBooks
+  {nome:"MacBook Air M2",preco:"R$ 7.500",descricao:"Leve, fino e com desempenho incrível para produtividade.",imagens:[
+"https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/macbook-air-m2-gallery-1-202206?wid=600&hei=600&fmt=jpeg",
+"https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/macbook-air-m2-gallery-2-202206?wid=600&hei=600&fmt=jpeg",
+"https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/macbook-air-m2-gallery-3-202206?wid=600&hei=600&fmt=jpeg"],checkout:"#"},
+  {nome:"MacBook Pro 14",preco:"R$ 12.000",descricao:"Desempenho extremo, ideal para profissionais criativos.",imagens:[
+"https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/macbook-pro-14-gallery-1-202206?wid=600&hei=600&fmt=jpeg",
+"https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/macbook-pro-14-gallery-2-202206?wid=600&hei=600&fmt=jpeg",
+"https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/macbook-pro-14-gallery-3-202206?wid=600&hei=600&fmt=jpeg"],checkout:"#"},
+  {nome:"MacBook Pro 16",preco:"R$ 15.500",descricao:"Máximo desempenho, bateria duradoura e tela incrível.",imagens:[
+"https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/macbook-pro-16-gallery-1-202206?wid=600&hei=600&fmt=jpeg",
+"https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/macbook-pro-16-gallery-2-202206?wid=600&hei=600&fmt=jpeg",
+"https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/macbook-pro-16-gallery-3-202206?wid=600&hei=600&fmt=jpeg"],checkout:"#"},
+  {nome:"MacBook Pro 13",preco:"R$ 9.500",descricao:"Compacto, potente e ideal para quem precisa de mobilidade.",imagens:[
+"https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/macbook-pro-13-gallery-1-202206?wid=600&hei=600&fmt=jpeg",
+"https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/macbook-pro-13-gallery-2-202206?wid=600&hei=600&fmt=jpeg",
+"https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/macbook-pro-13-gallery-3-202206?wid=600&hei=600&fmt=jpeg"],checkout:"#"},
 ];
 
-// Função para renderizar produtos, alternar fotos e abrir modal
+// Renderizar produtos
 const container=document.getElementById("produtos");
 produtos.forEach((p)=>{
   let currentImg=0;
@@ -106,15 +154,21 @@ produtos.forEach((p)=>{
     <h3>${p.nome}</h3>
     <p class="descricao">${p.descricao}</p>
     <p class="preco">${p.preco}</p>
-    <button class="next-img">Próxima foto</button>
-    <button onclick="window.location.href='${p.checkout}'">Comprar</button>
+    <button class="arrow left">&#10094;</button>
+    <button class="arrow right">&#10095;</button>
+    <button class="buy" onclick="window.location.href='${p.checkout}'">BUY</button>
   `;
   container.appendChild(card);
 
   const imgEl=card.querySelector(".produto-img");
-  const btnNext=card.querySelector(".next-img");
+  const left=card.querySelector(".left");
+  const right=card.querySelector(".right");
 
-  btnNext.addEventListener("click",()=>{
+  left.addEventListener("click",()=>{
+    currentImg=(currentImg-1+p.imagens.length)%p.imagens.length;
+    imgEl.src=p.imagens[currentImg];
+  });
+  right.addEventListener("click",()=>{
     currentImg=(currentImg+1)%p.imagens.length;
     imgEl.src=p.imagens[currentImg];
   });
@@ -122,6 +176,7 @@ produtos.forEach((p)=>{
   imgEl.addEventListener("click",()=>abrirModal(p.imagens));
 });
 
+// Modal
 const modal=document.getElementById("modal");
 const modalImg=document.getElementById("modal-img");
 const fechar=document.getElementById("fechar");
