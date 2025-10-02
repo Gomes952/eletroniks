@@ -111,82 +111,38 @@ document.getElementById("btn-enviar").addEventListener("click",()=>{
     produtosSection.style.display="block";
   },700);
 });
-<script>
+
+// Lista completa de produtos Apple (iPhone 13 ao 17, Apple Watch, iPads, MacBooks)
 const produtos=[
-  {
-    nome:"iPhone 15 Pro Max",
-    categoria:"iphone",
-    descricao:"iPhone 15 Pro Max, 512GB, cor Grafite, câmera tripla e display Super Retina XDR.",
-    preco:"R$ 9.799,00",
-    imagem:["https://images.unsplash.com/photo-1692596321291-6fda8b8a2a1f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=600"],
-    maisVendido:true
-  },
-  {
-    nome:"iPhone 15 Plus",
-    categoria:"iphone",
-    descricao:"iPhone 15 Plus, 256GB, cor Rosa, bateria de longa duração e desempenho avançado.",
-    preco:"R$ 7.599,00",
-    imagem:["https://images.unsplash.com/photo-1692596321291-6fda8b8a2a1f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=600"]
-  },
-  {
-    nome:"Apple Watch Ultra",
-    categoria:"watch",
-    descricao:"Apple Watch Ultra, GPS + Cellular, resistente à água, bateria de 36h, cor Prata.",
-    preco:"R$ 6.299,00",
-    imagem:["https://images.unsplash.com/photo-1692596321292-3b9d1b7b2bcb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=600"],
-    maisVendido:true
-  },
-  {
-    nome:"Apple Watch Series 9",
-    categoria:"watch",
-    descricao:"Apple Watch Series 9, GPS, cor Vermelha, acompanhamento de saúde e notificações inteligentes.",
-    preco:"R$ 4.199,00",
-    imagem:["https://images.unsplash.com/photo-1692596321292-3b9d1b7b2bcb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=600"]
-  },
-  {
-    nome:"iPad Pro 12.9",
-    categoria:"ipad",
-    descricao:"iPad Pro 12.9, 512GB, cor Cinza Espacial, display Liquid Retina XDR, compatível com Apple Pencil.",
-    preco:"R$ 11.499,00",
-    imagem:["https://images.unsplash.com/photo-1692596321293-4f0c6f9a2d3f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=600"],
-    maisVendido:true
-  },
-  {
-    nome:"iPad Air 5",
-    categoria:"ipad",
-    descricao:"iPad Air 5, 256GB, cor Rosa, chip M1, ideal para produtividade e criatividade.",
-    preco:"R$ 6.799,00",
-    imagem:["https://images.unsplash.com/photo-1692596321293-4f0c6f9a2d3f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=600"]
-  },
-  {
-    nome:"MacBook Pro 16 M2 Max",
-    categoria:"macbook",
-    descricao:"MacBook Pro 16'' M2 Max, 64GB RAM, 2TB SSD, cor Prata, desempenho profissional extremo.",
-    preco:"R$ 35.999,00",
-    imagem:["https://images.unsplash.com/photo-1692596321294-5a9d8f6a2d4b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=600"],
-    maisVendido:true
-  },
-  {
-    nome:"MacBook Air M2",
-    categoria:"macbook",
-    descricao:"MacBook Air M2, 16GB RAM, 512GB SSD, cor Cinza Espacial, ultrafino e potente.",
-    preco:"R$ 12.999,00",
-    imagem:["https://images.unsplash.com/photo-1692596321294-5a9d8f6a2d4b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=600"]
-  },
-  {
-    nome:"MacBook Pro 14 M2 Pro",
-    categoria:"macbook",
-    descricao:"MacBook Pro 14'' M2 Pro, 32GB RAM, 1TB SSD, cor Prata, ideal para criadores de conteúdo.",
-    preco:"R$ 22.499,00",
-    imagem:["https://images.unsplash.com/photo-1692596321294-5a9d8f6a2d4b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=600"]
-  },
-  {
-    nome:"MacBook Pro 13 M2",
-    categoria:"macbook",
-    descricao:"MacBook Pro 13'' M2, 16GB RAM, 512GB SSD, cor Cinza Espacial, portátil e eficiente.",
-    preco:"R$ 14.999,00",
-    imagem:["https://images.unsplash.com/photo-1692596321294-5a9d8f6a2d4b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=600"]
-  }
+  // iPhones
+  {nome:"iPhone 13",categoria:"iphone",descricao:"iPhone 13, 128GB, Azul, desempenho avançado e câmera dupla.",preco:"R$ 4.999,00",imagem:["https://images.unsplash.com/photo-1630197872761-92a839fa4f7e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=600"]},
+  {nome:"iPhone 13 Mini",categoria:"iphone",descricao:"iPhone 13 Mini, 128GB, Vermelho, compacto e potente.",preco:"R$ 4.499,00",imagem:["https://images.unsplash.com/photo-1630197872762-6fda8b8a2a1f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=600"]},
+  {nome:"iPhone 13 Pro",categoria:"iphone",descricao:"iPhone 13 Pro, 256GB, Prata, câmera tripla e display Super Retina XDR.",preco:"R$ 6.299,00",imagem:["https://images.unsplash.com/photo-1630197872763-7b1acb260507?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=600"]},
+  {nome:"iPhone 13 Pro Max",categoria:"iphone",descricao:"iPhone 13 Pro Max, 512GB, Grafite, câmera tripla e display Super Retina XDR.",preco:"R$ 6.999,00",imagem:["https://images.unsplash.com/photo-1630197872764-6fda8b8a2a1f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=600"]},
+  {nome:"iPhone 14",categoria:"iphone",descricao:"iPhone 14, 256GB, Roxo, bateria de longa duração e desempenho avançado.",preco:"R$ 5.799,00",imagem:["https://images.unsplash.com/photo-1630197872765-3b9d1b7b2bcb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=600"]},
+  {nome:"iPhone 14 Plus",categoria:"iphone",descricao:"iPhone 14 Plus, 256GB, Azul, grande e potente.",preco:"R$ 6.299,00",imagem:["https://images.unsplash.com/photo-1630197872766-4f0c6f9a2d3f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=600"]},
+  {nome:"iPhone 14 Pro",categoria:"iphone",descricao:"iPhone 14 Pro, 512GB, Dourado, câmera avançada e display Super Retina XDR.",preco:"R$ 7.599,00",imagem:["https://images.unsplash.com/photo-1630197872767-5a9d8f6a2d4b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=600"]},
+  {nome:"iPhone 14 Pro Max",categoria:"iphone",descricao:"iPhone 14 Pro Max, 1TB, Grafite, câmera tripla e display Super Retina XDR.",preco:"R$ 8.999,00",imagem:["https://images.unsplash.com/photo-1630197872768-6b1acb260507?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=600"]},
+  {nome:"iPhone 15",categoria:"iphone",descricao:"iPhone 15, 256GB, Rosa, novo chip e câmera melhorada.",preco:"R$ 6.799,00",imagem:["https://images.unsplash.com/photo-1692596321291-6fda8b8a2a1f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=600"]},
+  {nome:"iPhone 15 Plus",categoria:"iphone",descricao:"iPhone 15 Plus, 256GB, Azul, bateria de longa duração e desempenho avançado.",preco:"R$ 7.599,00",imagem:["https://images.unsplash.com/photo-1692596321291-6fda8b8a2a1f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=600"]},
+  {nome:"iPhone 15 Pro",categoria:"iphone",descricao:"iPhone 15 Pro, 512GB, Prata, câmera tripla e display Super Retina XDR.",preco:"R$ 9.299,00",imagem:["https://images.unsplash.com/photo-1692596321291-6fda8b8a2a1f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=600"],maisVendido:true},
+  {nome:"iPhone 15 Pro Max",categoria:"iphone",descricao:"iPhone 15 Pro Max, 1TB, Grafite, câmera tripla e display Super Retina XDR.",preco:"R$ 9.799,00",imagem:["https://images.unsplash.com/photo-1692596321291-6fda8b8a2a1f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=600"],maisVendido:true},
+  {nome:"iPhone 16",categoria:"iphone",descricao:"iPhone 16, 512GB, Dourado, desempenho extremo e câmera avançada.",preco:"R$ 10.999,00",imagem:["https://images.unsplash.com/photo-1692596321295-6fda8b8a2a1f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=600"]},
+  {nome:"iPhone 17",categoria:"iphone",descricao:"iPhone 17, 1TB, Grafite, câmera quádrupla e display Super Retina XDR.",preco:"R$ 12.999,00",imagem:["https://images.unsplash.com/photo-1692596321296-6fda8b8a2a1f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=600"],maisVendido:true},
+  
+  // Apple Watch
+  {nome:"Apple Watch Ultra",categoria:"watch",descricao:"Apple Watch Ultra, GPS + Cellular, resistente à água, bateria de 36h, cor Prata.",preco:"R$ 6.299,00",imagem:["https://images.unsplash.com/photo-1692596321292-3b9d1b7b2bcb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=600"],maisVendido:true},
+  {nome:"Apple Watch Series 9",categoria:"watch",descricao:"Apple Watch Series 9, GPS, cor Vermelha, acompanhamento de saúde e notificações inteligentes.",preco:"R$ 4.199,00",imagem:["https://images.unsplash.com/photo-1692596321292-3b9d1b7b2bcb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=600"]},
+  
+  // iPads
+  {nome:"iPad Pro 12.9",categoria:"ipad",descricao:"iPad Pro 12.9, 512GB, cor Cinza Espacial, display Liquid Retina XDR, compatível com Apple Pencil.",preco:"R$ 11.499,00",imagem:["https://images.unsplash.com/photo-1692596321293-4f0c6f9a2d3f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=600"],maisVendido:true},
+  {nome:"iPad Air 5",categoria:"ipad",descricao:"iPad Air 5, 256GB, cor Rosa, chip M1, ideal para produtividade e criatividade.",preco:"R$ 6.799,00",imagem:["https://images.unsplash.com/photo-1692596321293-4f0c6f9a2d3f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=600"]},
+  
+  // MacBooks
+  {nome:"MacBook Pro 16 M2 Max",categoria:"macbook",descricao:"MacBook Pro 16'' M2 Max, 64GB RAM, 2TB SSD, cor Prata, desempenho profissional extremo.",preco:"R$ 35.999,00",imagem:["https://images.unsplash.com/photo-1692596321294-5a9d8f6a2d4b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=600"],maisVendido:true},
+  {nome:"MacBook Air M2",categoria:"macbook",descricao:"MacBook Air M2, 16GB RAM, 512GB SSD, cor Cinza Espacial, ultrafino e potente.",preco:"R$ 12.999,00",imagem:["https://images.unsplash.com/photo-1692596321294-5a9d8f6a2d4b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=600"]},
+  {nome:"MacBook Pro 14 M2 Pro",categoria:"macbook",descricao:"MacBook Pro 14'' M2 Pro, 32GB RAM, 1TB SSD, cor Prata, ideal para criadores de conteúdo.",preco:"R$ 22.499,00",imagem:["https://images.unsplash.com/photo-1692596321294-5a9d8f6a2d4b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=600"]},
+  {nome:"MacBook Pro 13 M2",categoria:"macbook",descricao:"MacBook Pro 13'' M2, 16GB RAM, 512GB SSD, cor Cinza Espacial, portátil e eficiente.",preco:"R$ 14.999,00",imagem:["https://images.unsplash.com/photo-1692596321294-5a9d8f6a2d4b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=600"]}
 ];
 
 // Função para renderizar produtos
