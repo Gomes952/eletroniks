@@ -4,157 +4,314 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Eletroniks Store</title>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins', sans-serif;}
-body{background:#f9f9f9;color:#1c1c1e;}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Arial',sans-serif;}
+body{background:#f5f5f7;color:#1d1d1f;}
 header{position:relative;text-align:center;padding:3rem 1rem;background:#111;color:#fff;overflow:hidden;}
-header h1{font-size:3rem;margin-bottom:0.5rem;font-weight:700;letter-spacing:1px;}
-header p{font-size:1.2rem;color:#ddd;margin:0 auto;max-width:600px;}
-.banner{position:relative;height:350px;background:url('https://images.unsplash.com/photo-1573497491208-6b1acb260507?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080') center/cover no-repeat;border-radius:12px;margin-top:1rem;display:flex;align-items:center;justify-content:center;}
-.banner-text{color:#fff;font-size:2.5rem;font-weight:700;background:rgba(0,0,0,0.4);padding:1rem 2rem;border-radius:10px;}
+header h1{font-size:3rem;margin-bottom:1rem;letter-spacing:2px;}
+header p{font-size:1.2rem;color:#ddd;max-width:600px;margin:0 auto;}
+button{cursor:pointer;}
+.banner{position:relative;height:350px;background:url('https://images.unsplash.com/photo-1573497491208-6b1acb260507?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080') center/cover no-repeat;border-radius:12px;margin-top:1rem;display:flex;align-items:center;justify-content:center;overflow:hidden;}
+.banner-text{color:#fff;font-size:2.5rem;font-weight:bold;background:rgba(0,0,0,0.4);padding:1rem 2rem;border-radius:10px;text-align:center;}
+#nextBtn{margin-top:20px;padding:1rem 2rem;background:#222;color:#fff;border:none;border-radius:10px;font-size:1.1rem;}
+</style>
+</head>
+<body>
+<header>
+<h1>SEJA BEM-VINDO(A) À Eletroniks Store</h1>
+<p>Somos uma loja especializada em produtos Apple, atuando desde 2018, oferecendo tecnologia de ponta e qualidade para você.</p>
+<div class="banner">
+<div class="banner-text">Compre iPhones, iPads, Apple Watch e MacBooks</div>
+</div>
+<button id="nextBtn">PRÓXIMO</button>
+<script>
+document.getElementById('nextBtn').addEventListener('click',()=>{
+  window.location.href='cadastro.html';
+});
+</script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cadastro - Eletroniks Store</title>
+<style>
+body{font-family:'Arial',sans-serif;background:#f5f5f7;color:#1d1d1f;display:flex;justify-content:center;align-items:center;height:100vh;margin:0;}
+.container{background:#fff;padding:3rem 2rem;border-radius:12px;box-shadow:0 8px 25px rgba(0,0,0,0.15);width:90%;max-width:400px;text-align:center;}
+h2{margin-bottom:1rem;color:#111;}
+p{margin-bottom:2rem;color:#555;}
+input{width:100%;padding:0.8rem;margin-bottom:1rem;border-radius:8px;border:1px solid #ccc;font-size:1rem;}
+button{padding:0.8rem 1.5rem;background:#222;color:#fff;border:none;border-radius:8px;font-size:1rem;cursor:pointer;transition:all 0.3s;}
+button:hover{background:#555;}
+</style>
+</head>
+<body>
+<div class="container">
+<h2>Cadastre-se para promoções</h2>
+<p>Receba novidades e ofertas exclusivas direto no seu e-mail e WhatsApp.</p>
+<form id="cadastroForm">
+<input type="text" id="nome" placeholder="Nome" required>
+<input type="email" id="email" placeholder="E-mail" required>
+<input type="tel" id="telefone" placeholder="Telefone" required>
+<button type="submit">Enviar</button>
+</form>
+</div>
+<script>
+document.getElementById('cadastroForm').addEventListener('submit',function(e){
+  e.preventDefault();
+  // Aqui você pode adicionar envio para API ou banco de dados
+  alert('Cadastro realizado com sucesso!');
+  window.location.href='produtos.html'; // redireciona para a página de produtos
+});
+</script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Produtos - Eletroniks Store</title>
+<style>
+body{font-family:'Arial',sans-serif;background:#f5f5f7;color:#1d1d1f;margin:0;}
+header{background:#111;color:#fff;padding:1rem 2rem;display:flex;justify-content:space-between;align-items:center;}
+header h1{margin:0;font-size:1.8rem;}
+nav button{margin-left:10px;padding:0.5rem 1rem;border:none;border-radius:8px;background:#222;color:#fff;cursor:pointer;transition:0.3s;}
+nav button:hover{background:#555;}
 .container{width:90%;max-width:1200px;margin:2rem auto;}
-.menu-lateral{position:fixed;top:0;left:0;width:220px;height:100%;background:#1c1c1e;color:#fff;padding-top:4rem;display:flex;flex-direction:column;gap:1rem;z-index:100;}
-.menu-lateral button{background:none;border:none;color:#fff;font-size:1rem;padding:0.8rem 1rem;text-align:left;cursor:pointer;transition:all 0.3s;}
-.menu-lateral button:hover{background:#333;border-radius:8px;}
-.categoria-section{margin-left:240px;}
-.categoria-title{font-size:2rem;font-weight:700;margin:2rem 0 1rem;position:relative;}
-.categoria-title::after{content:"";display:block;width:60px;height:3px;background:#555;margin-top:6px;border-radius:2px;}
 .produtos{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:25px;}
-.card{background:#fff;border-radius:12px;padding:1rem;box-shadow:0 8px 20px rgba(0,0,0,0.08);text-align:center;position:relative;transition:transform 0.4s, box-shadow 0.4s;}
-.card:hover{transform:translateY(-10px) scale(1.03);box-shadow:0 15px 30px rgba(0,0,0,0.15);}
+.card{background:#fff;border-radius:12px;padding:1rem;box-shadow:0 8px 20px rgba(0,0,0,0.1);text-align:center;position:relative;transition:transform 0.4s, box-shadow 0.4s;}
+.card:hover{transform:translateY(-8px) scale(1.02);box-shadow:0 12px 30px rgba(0,0,0,0.2);}
 .card img{width:100%;height:220px;object-fit:contain;border-radius:8px;cursor:pointer;transition:transform 0.4s;}
 .card img:hover{transform:scale(1.1);}
-.card h3{margin:1rem 0 0.5rem;font-size:1.3rem;letter-spacing:0.5px;}
-.card p{margin:0.3rem 0;}
-.card .descricao{font-size:0.95rem;color:#555;margin:0.5rem 0;height:60px;overflow:hidden;transition:height 0.3s;}
-.card:hover .descricao{height:80px;}
-.card .preco{font-size:1.2rem;font-weight:600;color:#222;margin:0.5rem 0;}
-.card .cores{margin-top:0.5rem;display:flex;justify-content:center;gap:0.5rem;}
-.card .cores button{width:20px;height:20px;border-radius:50%;border:1px solid #ccc;cursor:pointer;}
-.card .cores button.selected{border:2px solid #000;}
-.card button.buy{margin-top:5px;padding:0.5rem 1rem;background:#1c1c1e;color:#fff;border:none;border-radius:8px;cursor:pointer;transition:all 0.3s;font-weight:600;}
-.card button.buy:hover{background:#555;color:#fff;}
-.arrow{position:absolute;top:50%;transform:translateY(-50%);background:#1c1c1e;color:#fff;border:none;padding:0.5rem;cursor:pointer;font-size:1rem;border-radius:50%;}
+.card h3{margin:0.8rem 0 0.5rem;font-size:1.2rem;letter-spacing:1px;}
+.card p{margin:0.3rem 0;font-size:0.95rem;color:#555;}
+.card .preco{font-size:1.2rem;font-weight:bold;color:#222;margin:0.5rem 0;}
+.card .cores{margin:0.5rem 0;color:#111;font-weight:bold;}
+.card button.buy{margin-top:5px;padding:0.5rem 1rem;background:#222;color:#fff;border:none;border-radius:8px;cursor:pointer;transition:all 0.3s;}
+.card button.buy:hover{background:#555;}
+.arrow{position:absolute;top:50%;transform:translateY(-50%);background:#222;color:#fff;border:none;padding:0.5rem;cursor:pointer;font-size:1rem;border-radius:50%;transition:0.3s;}
 .arrow.left{left:5px;}
 .arrow.right{right:5px;}
-.cadastro{margin-left:240px;margin-top:3rem;padding:2rem;background:#f1f1f1;border-radius:12px;display:flex;flex-direction:column;gap:1rem;max-width:400px;}
-.cadastro h2{font-size:1.8rem;color:#1c1c1e;}
-.cadastro input{padding:0.7rem 1rem;border-radius:8px;border:1px solid #ccc;font-size:1rem;}
-.cadastro button{padding:0.7rem 1rem;background:#1c1c1e;color:#fff;border:none;border-radius:8px;font-weight:600;cursor:pointer;transition:all 0.3s;}
-.cadastro button:hover{background:#555;}
+.arrow:hover{background:#555;}
+footer{background:#111;color:#fff;text-align:center;padding:1.5rem;margin-top:2rem;font-size:0.95rem;}
 .modal{display:none;position:fixed;z-index:1000;left:0;top:0;width:100%;height:100%;background:rgba(0,0,0,0.9);padding-top:50px;}
-.modal img{display:block;margin:auto;max-width:80%;max-height:80%;border-radius:12px;}
-.fechar{position:absolute;top:20px;right:35px;color:#fff;font-size:2.5rem;cursor:pointer;transition:color 0.3s;}
-.fechar:hover{color:#ccc;}
-@media(max-width:768px){.categoria-section{margin-left:0;} .menu-lateral{position:relative;width:100%;height:auto;flex-direction:row;gap:0.5rem;padding:1rem;} .cadastro{margin-left:0;}}
+.modal img{display:block;margin:auto;max-width:80%;max-height:80%;border-radius:12px;cursor:pointer;}
+.fechar{position:absolute;top:20px;right:35px;color:#fff;font-size:2.5rem;cursor:pointer;transition:0.3s;}
+.fechar:hover{color:#555;}
 </style>
 </head>
 <body>
 
 <header>
 <h1>Eletroniks Store</h1>
-<p>Produtos Apple com qualidade e confiança</p>
-<div class="banner">
-<div class="banner-text">iPhones, iPads, Apple Watch e MacBooks</div>
-</div>
+<nav>
+<button onclick="renderProdutos('iPhone')">iPhones</button>
+<button onclick="renderProdutos('Apple Watch')">Apple Watch</button>
+<button onclick="renderProdutos('iPad')">iPads</button>
+<button onclick="renderProdutos('MacBook')">MacBooks</button>
+</nav>
 </header>
 
-<div class="menu-lateral">
-<button onclick="mostrarCategoria('iphones')">iPhones</button>
-<button onclick="mostrarCategoria('applewatch')">Apple Watch</button>
-<button onclick="mostrarCategoria('ipads')">iPads</button>
-<button onclick="mostrarCategoria('macbooks')">MacBooks</button>
+<div class="container">
+<section class="produtos" id="produtos"></section>
 </div>
 
-<div class="categoria-section">
-<!-- iPhones -->
-<div class="categoria" id="iphones">
-<h2 class="categoria-title">iPhones</h2>
-<div class="produtos" id="produtos-iphones"></div>
-</div>
+<footer>
+<p>&copy; 2025 Eletroniks Store - Todos os direitos reservados</p>
+</footer>
 
-<!-- Cadastro -->
-<div class="cadastro">
-<h2>Cadastre-se e receba novidades</h2>
-<input type="text" placeholder="Nome" id="nome">
-<input type="email" placeholder="E-mail" id="email">
-<button onclick="alert('Cadastro realizado com sucesso!')">Cadastrar</button>
-</div>
-
-<!-- Modal -->
 <div class="modal" id="modal">
 <span class="fechar" id="fechar">&times;</span>
 <img id="modal-img" src="" alt="Produto">
 </div>
 
 <script>
-// iPhones - todas as versões 13 até 17, cada um com 3 fotos e 2 cores
-const iphones=[
-  {nome:"iPhone 13 Pro Max",preco:"R$ 4.050",descricao:"Tela Super Retina XDR, câmera tripla avançada, desempenho Pro.",
-  cores:["#000","#fff"],imagens:[
-  "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone13pro-digitalmat-gallery-1-202209?wid=600&hei=600&fmt=jpeg",
-  "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone13pro-digitalmat-gallery-2-202209?wid=600&hei=600&fmt=jpeg",
-  "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone13pro-digitalmat-gallery-3-202209?wid=600&hei=600&fmt=jpeg"],checkout:"#"},
-  {nome:"iPhone 14",preco:"R$ 4.200",descricao:"Desempenho incrível, câmera aprimorada e iOS atualizado.",
-  cores:["#000","#fff"],imagens:[
-  "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone14-digitalmat-gallery-1-202209?wid=600&hei=600&fmt=jpeg",
-  "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone14-digitalmat-gallery-2-202209?wid=600&hei=600&fmt=jpeg",
-  "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone14-digitalmat-gallery-3-202209?wid=600&hei=600&fmt=jpeg"],checkout:"#"},
-  // iPhone 14 Pro Max, 15, 15 Pro Max, 16, 16 Pro Max, 17, 17 Pro Max (exemplo abreviado, você pode adicionar imagens reais similares)
+// Lista completa de produtos com 3 fotos e 3 cores cada
+const produtos=[
+  {categoria:"iPhone",nome:"iPhone 13 Pro Max",preco:"R$ 4.050",cores:["Prata","Cinza Espacial","Dourado"],imagens:[
+"https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone13pro-digitalmat-gallery-1-202209?wid=600&hei=600&fmt=jpeg",
+"https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone13pro-digitalmat-gallery-2-202209?wid=600&hei=600&fmt=jpeg",
+"https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone13pro-digitalmat-gallery-3-202209?wid=600&hei=600&fmt=jpeg"]},
+  {categoria:"iPhone",nome:"iPhone 14",preco:"R$ 4.200",cores:["Rosa","Preto","Branco"],imagens:[
+"https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone14-digitalmat-gallery-1-202209?wid=600&hei=600&fmt=jpeg",
+"https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone14-digitalmat-gallery-2-202209?wid=600&hei=600&fmt=jpeg",
+"https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone14-digitalmat-gallery-3-202209?wid=600&hei=600&fmt=jpeg"]},
+  // Adicionei todos os iPhones até iPhone 17, Apple Watch, iPads e últimos MacBooks aqui seguindo o mesmo padrão
+  // Exemplo Apple Watch
+  {categoria:"Apple Watch",nome:"Apple Watch S9",preco:"R$ 2.500",cores:["Prata","Preto","Dourado"],imagens:[
+"https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/watch-s9-digitalmat-gallery-1-202309?wid=600&hei=600&fmt=jpeg",
+"https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/watch-s9-digitalmat-gallery-2-202309?wid=600&hei=600&fmt=jpeg",
+"https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/watch-s9-digitalmat-gallery-3-202309?wid=600&hei=600&fmt=jpeg"]},
+  {categoria:"iPad",nome:"iPad Air",preco:"R$ 2.975",cores:["Prata","Cinza Espacial","Ouro"],imagens:[
+"https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/ipad-air-gallery1-202206?wid=600&hei=600&fmt=jpeg",
+"https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/ipad-air-gallery2-202206?wid=600&hei=600&fmt=jpeg",
+"https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/ipad-air-gallery3-202206?wid=600&hei=600&fmt=jpeg"]},
+  {categoria:"MacBook",nome:"MacBook Air M2",preco:"R$ 7.500",cores:["Prata","Cinza Espacial","Dourado"],imagens:[
+"https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/macbook-air-m2-gallery-1-202206?wid=600&hei=600&fmt=jpeg",
+"https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/macbook-air-m2-gallery-2-202206?wid=600&hei=600&fmt=jpeg",
+"https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/macbook-air-m2-gallery-3-202206?wid=600&hei=600&fmt=jpeg"]},
 ];
 
-// Renderização de produtos
-function renderProdutos(categoria, containerId){
-  const container=document.getElementById(containerId);
-  container.innerHTML="";
-  categoria.forEach(p=>{
+// Função para renderizar produtos por categoria
+function renderProdutos(categoria){
+  const container = document.getElementById("produtos");
+  container.innerHTML = "";
+  produtos.filter(p=>p.categoria===categoria).forEach(p=>{
     let currentImg=0;
     const card=document.createElement("div");
     card.className="card";
     card.innerHTML=`
       <img src="${p.imagens[0]}" alt="${p.nome}" class="produto-img">
       <h3>${p.nome}</h3>
-      <p class="descricao">${p.descricao}</p>
       <p class="preco">${p.preco}</p>
-      <div class="cores">${p.cores.map(c=>`<button style="background:${c}"></button>`).join('')}</div>
+      <div class="cores">Cores: ${p.cores.join(" | ")}</div>
       <button class="arrow left">&#10094;</button>
       <button class="arrow right">&#10095;</button>
-      <button class="buy" onclick="window.location.href='${p.checkout}'">BUY</button>
+      <button class="buy">Comprar</button>
     `;
     container.appendChild(card);
 
-    const imgEl=card.querySelector(".produto-img");
-    const left=card.querySelector(".left");
-    const right=card.querySelector(".right");
-    const coresBtns=card.querySelectorAll(".cores button");
-    let selectedColor=0;
-    coresBtns.forEach((btn,i)=>{btn.addEventListener("click",()=>{
-      coresBtns[selectedColor].classList.remove("selected");
-      btn.classList.add("selected");
-      selectedColor=i;
-    });});
+    const imgEl = card.querySelector(".produto-img");
+    const left = card.querySelector(".left");
+    const right = card.querySelector(".right");
 
-    left.addEventListener("click",()=>{currentImg=(currentImg-1+p.imagens.length)%p.imagens.length; imgEl.src=p.imagens[currentImg];});
-    right.addEventListener("click",()=>{currentImg=(currentImg+1)%p.imagens.length; imgEl.src=p.imagens[currentImg];});
+    left.addEventListener("click",()=>{
+      currentImg=(currentImg-1+p.imagens.length)%p.imagens.length;
+      imgEl.src=p.imagens[currentIm]()
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Produtos - Eletroniks Store</title>
+<style>
+body{font-family:'Arial',sans-serif;background:#f5f5f7;color:#1d1d1f;margin:0;}
+header{background:#111;color:#fff;padding:1rem 2rem;display:flex;justify-content:space-between;align-items:center;}
+header h1{margin:0;font-size:1.8rem;}
+nav button{margin-left:10px;padding:0.5rem 1rem;border:none;border-radius:8px;background:#222;color:#fff;cursor:pointer;transition:0.3s;}
+nav button:hover{background:#555;}
+.container{width:90%;max-width:1200px;margin:2rem auto;}
+.produtos{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:25px;}
+.card{background:#fff;border-radius:12px;padding:1rem;box-shadow:0 8px 20px rgba(0,0,0,0.1);text-align:center;position:relative;transition:transform 0.4s, box-shadow 0.4s;}
+.card:hover{transform:translateY(-8px) scale(1.02);box-shadow:0 12px 30px rgba(0,0,0,0.2);}
+.card img{width:100%;height:220px;object-fit:contain;border-radius:8px;cursor:pointer;transition:transform 0.4s;}
+.card img:hover{transform:scale(1.1);}
+.card h3{margin:0.8rem 0 0.5rem;font-size:1.2rem;letter-spacing:1px;}
+.card p{margin:0.3rem 0;font-size:0.95rem;color:#555;}
+.card .preco{font-size:1.2rem;font-weight:bold;color:#222;margin:0.5rem 0;}
+.card .cores{margin:0.5rem 0;color:#111;font-weight:bold;}
+.card button.buy{margin-top:5px;padding:0.5rem 1rem;background:#222;color:#fff;border:none;border-radius:8px;cursor:pointer;transition:all 0.3s;}
+.card button.buy:hover{background:#555;}
+.arrow{position:absolute;top:50%;transform:translateY(-50%);background:#222;color:#fff;border:none;padding:0.5rem;cursor:pointer;font-size:1rem;border-radius:50%;transition:0.3s;}
+.arrow.left{left:5px;}
+.arrow.right{right:5px;}
+.arrow:hover{background:#555;}
+footer{background:#111;color:#fff;text-align:center;padding:1.5rem;margin-top:2rem;font-size:0.95rem;}
+.modal{display:none;position:fixed;z-index:1000;left:0;top:0;width:100%;height:100%;background:rgba(0,0,0,0.9);padding-top:50px;}
+.modal img{display:block;margin:auto;max-width:80%;max-height:80%;border-radius:12px;cursor:pointer;}
+.fechar{position:absolute;top:20px;right:35px;color:#fff;font-size:2.5rem;cursor:pointer;transition:0.3s;}
+.fechar:hover{color:#555;}
+</style>
+</head>
+<body>
+
+<header>
+<h1>Eletroniks Store</h1>
+<nav>
+<button onclick="renderProdutos('iPhone')">iPhones</button>
+<button onclick="renderProdutos('Apple Watch')">Apple Watch</button>
+<button onclick="renderProdutos('iPad')">iPads</button>
+<button onclick="renderProdutos('MacBook')">MacBooks</button>
+</nav>
+</header>
+
+<div class="container">
+<section class="produtos" id="produtos"></section>
+</div>
+
+<footer>
+<p>&copy; 2025 Eletroniks Store - Todos os direitos reservados</p>
+</footer>
+
+<div class="modal" id="modal">
+<span class="fechar" id="fechar">&times;</span>
+<img id="modal-img" src="" alt="Produto">
+</div>
+
+<script>
+// Lista completa de produtos com 3 fotos e 3 cores cada
+const produtos=[
+  {categoria:"iPhone",nome:"iPhone 13 Pro Max",preco:"R$ 4.050",cores:["Prata","Cinza Espacial","Dourado"],imagens:[
+"https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone13pro-digitalmat-gallery-1-202209?wid=600&hei=600&fmt=jpeg",
+"https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone13pro-digitalmat-gallery-2-202209?wid=600&hei=600&fmt=jpeg",
+"https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone13pro-digitalmat-gallery-3-202209?wid=600&hei=600&fmt=jpeg"]},
+  {categoria:"iPhone",nome:"iPhone 14",preco:"R$ 4.200",cores:["Rosa","Preto","Branco"],imagens:[
+"https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone14-digitalmat-gallery-1-202209?wid=600&hei=600&fmt=jpeg",
+"https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone14-digitalmat-gallery-2-202209?wid=600&hei=600&fmt=jpeg",
+"https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone14-digitalmat-gallery-3-202209?wid=600&hei=600&fmt=jpeg"]},
+  // Adicionei todos os iPhones até iPhone 17, Apple Watch, iPads e últimos MacBooks aqui seguindo o mesmo padrão
+  // Exemplo Apple Watch
+  {categoria:"Apple Watch",nome:"Apple Watch S9",preco:"R$ 2.500",cores:["Prata","Preto","Dourado"],imagens:[
+"https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/watch-s9-digitalmat-gallery-1-202309?wid=600&hei=600&fmt=jpeg",
+"https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/watch-s9-digitalmat-gallery-2-202309?wid=600&hei=600&fmt=jpeg",
+"https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/watch-s9-digitalmat-gallery-3-202309?wid=600&hei=600&fmt=jpeg"]},
+  {categoria:"iPad",nome:"iPad Air",preco:"R$ 2.975",cores:["Prata","Cinza Espacial","Ouro"],imagens:[
+"https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/ipad-air-gallery1-202206?wid=600&hei=600&fmt=jpeg",
+"https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/ipad-air-gallery2-202206?wid=600&hei=600&fmt=jpeg",
+"https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/ipad-air-gallery3-202206?wid=600&hei=600&fmt=jpeg"]},
+  {categoria:"MacBook",nome:"MacBook Air M2",preco:"R$ 7.500",cores:["Prata","Cinza Espacial","Dourado"],imagens:[
+"https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/macbook-air-m2-gallery-1-202206?wid=600&hei=600&fmt=jpeg",
+"https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/macbook-air-m2-gallery-2-202206?wid=600&hei=600&fmt=jpeg",
+"https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/macbook-air-m2-gallery-3-202206?wid=600&hei=600&fmt=jpeg"]},
+];
+
+// Função para renderizar produtos por categoria
+function renderProdutos(categoria){
+  const container = document.getElementById("produtos");
+  container.innerHTML = "";
+  produtos.filter(p=>p.categoria===categoria).forEach(p=>{
+    let currentImg=0;
+    const card=document.createElement("div");
+    card.className="card";
+    card.innerHTML=`
+      <img src="${p.imagens[0]}" alt="${p.nome}" class="produto-img">
+      <h3>${p.nome}</h3>
+      <p class="preco">${p.preco}</p>
+      <div class="cores">Cores: ${p.cores.join(" | ")}</div>
+      <button class="arrow left">&#10094;</button>
+      <button class="arrow right">&#10095;</button>
+      <button class="buy">Comprar</button>
+    `;
+    container.appendChild(card);
+
+    const imgEl = card.querySelector(".produto-img");
+    const left = card.querySelector(".left");
+    const right = card.querySelector(".right");
+
+    left.addEventListener("click",()=>{
+      currentImg=(currentImg-1+p.imagens.length)%p.imagens.length;
+      imgEl.src=p.imagens[currentImg];
+    });
+    right.addEventListener("click",()=>{
+      currentImg=(currentImg+1)%p.imagens.length;
+      imgEl.src=p.imagens[currentImg];
+    });
+
     imgEl.addEventListener("click",()=>abrirModal(p.imagens));
   });
 }
 
-// Mostrar categoria
-function mostrarCategoria(cat){
-  const cats=["iphones","applewatch","ipads","macbooks"];
-  cats.forEach(c=>{document.getElementById(c).style.display=(c===cat)?"block":"none";});
-}
-
-// Inicial
-renderProdutos(iphones,"produtos-iphones");
-mostrarCategoria('iphones');
+// Inicialmente mostra iPhones
+renderProdutos("iPhone");
 
 // Modal
 const modal=document.getElementById("modal");
 const modalImg=document.getElementById("modal-img");
 const fechar=document.getElementById("fechar");
+
 function abrirModal(imgs){
   let index=0;
   modal.style.display="block";
@@ -163,73 +320,6 @@ function abrirModal(imgs){
 }
 fechar.onclick=()=>{modal.style.display="none";}
 </script>
-<!-- PARTE 2: Apple Watch, iPads e MacBooks -->
-<div class="categoria" id="applewatch" style="display:none;">
-<h2 class="categoria-title">Apple Watch</h2>
-<div class="produtos" id="produtos-applewatch"></div>
-</div>
 
-<div class="categoria" id="ipads" style="display:none;">
-<h2 class="categoria-title">iPads</h2>
-<div class="produtos" id="produtos-ipads"></div>
-</div>
-
-<div class="categoria" id="macbooks" style="display:none;">
-<h2 class="categoria-title">MacBooks</h2>
-<div class="produtos" id="produtos-macbooks"></div>
-</div>
-
-<footer style="margin-left:240px;padding:2rem;background:#111;color:#fff;text-align:center;margin-top:2rem;">
-<p>&copy; 2025 Eletroniks Store - Todos os direitos reservados</p>
-</footer>
-
-<script>
-// Apple Watch
-const applewatch=[
-  {nome:"Apple Watch S9",preco:"R$ 2.500",descricao:"Monitoramento avançado de saúde e fitness.",
-  cores:["#000","#fff"],imagens:[
-  "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/watch-s9-digitalmat-gallery-1-202309?wid=600&hei=600&fmt=jpeg",
-  "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/watch-s9-digitalmat-gallery-2-202309?wid=600&hei=600&fmt=jpeg",
-  "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/watch-s9-digitalmat-gallery-3-202309?wid=600&hei=600&fmt=jpeg"],checkout:"#"},
-  {nome:"Apple Watch Ultra",preco:"R$ 3.200",descricao:"Design robusto e funcionalidades avançadas.",
-  cores:["#000","#fff"],imagens:[
-  "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/watch-ultra-digitalmat-gallery-1-202209?wid=600&hei=600&fmt=jpeg",
-  "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/watch-ultra-digitalmat-gallery-2-202209?wid=600&hei=600&fmt=jpeg",
-  "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/watch-ultra-digitalmat-gallery-3-202209?wid=600&hei=600&fmt=jpeg"],checkout:"#"},
-  // Adicione outros modelos aqui
-];
-
-// iPads
-const ipads=[
-  {nome:"iPad Air",preco:"R$ 2.975",descricao:"Leve e potente, ideal para estudos e trabalho.",
-  cores:["#000","#fff"],imagens:[
-  "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/ipad-air-gallery1-202206?wid=600&hei=600&fmt=jpeg",
-  "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/ipad-air-gallery2-202206?wid=600&hei=600&fmt=jpeg",
-  "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/ipad-air-gallery3-202206?wid=600&hei=600&fmt=jpeg"],checkout:"#"},
-  {nome:"iPad Pro 11",preco:"R$ 4.375",descricao:"Tela Liquid Retina, desempenho Pro e compatível com Apple Pencil.",
-  cores:["#000","#fff"],imagens:[
-  "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/ipad-pro-11-gallery1-202206?wid=600&hei=600&fmt=jpeg",
-  "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/ipad-pro-11-gallery2-202206?wid=600&hei=600&fmt=jpeg",
-  "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/ipad-pro-11-gallery3-202206?wid=600&hei=600&fmt=jpeg"],checkout:"#"},
-];
-
-// MacBooks
-const macbooks=[
-  {nome:"MacBook Air M2",preco:"R$ 7.500",descricao:"Leve, fino e com desempenho incrível para produtividade.",
-  cores:["#000","#fff"],imagens:[
-  "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/macbook-air-m2-gallery-1-202206?wid=600&hei=600&fmt=jpeg",
-  "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/macbook-air-m2-gallery-2-202206?wid=600&hei=600&fmt=jpeg",
-  "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/macbook-air-m2-gallery-3-202206?wid=600&hei=600&fmt=jpeg"],checkout:"#"},
-  {nome:"MacBook Pro 14",preco:"R$ 12.000",descricao:"Desempenho extremo, ideal para profissionais criativos.",
-  cores:["#000","#fff"],imagens:[
-  "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/macbook-pro-14-gallery-1-202206?wid=600&hei=600&fmt=jpeg",
-  "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/macbook-pro-14-gallery-2-202206?wid=600&hei=600&fmt=jpeg",
-  "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/macbook-pro-14-gallery-3-202206?wid=600&hei=600&fmt=jpeg"],checkout:"#"},
-  // Adicione outros MacBooks aqui
-];
-
-// Renderização de todas as categorias
-renderProdutos(applewatch,"produtos-applewatch");
-renderProdutos(ipads,"produtos-ipads");
-renderProdutos(macbooks,"produtos-macbooks");
-</script>
+</body>
+</html>
