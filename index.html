@@ -120,542 +120,101 @@
 
 /* *********** Produtos (com 4 imagens por cor) *********** */
 const produtos = [
-  // ---------- iPhones (mais vendidos primeiro por categoria) ----------
-  {
-    nome: "iPhone 15 Pro Max – 1TB",
-    categoria: "iphone",
-    descricao: "iPhone 15 Pro Max — câmera avançada, 1TB, performance topo de linha.",
-    preco: 9799.00 * 0.55, // base exemplo * (1 - 0.45) -> calculado abaixo com toFixed
-    maisVendido: true,
-    cores:["Grafite","Prata","Azul"],
-    imagens:{
-      grafite:[
-        "https://images.unsplash.com/photo-1603898037225-cb3b0c4f3a16?auto=format&fit=crop&w=900&q=80",
-        "https://images.unsplash.com/photo-1631972328599-bb3d9d5e0a1f?auto=format&fit=crop&w=900&q=80",
-        "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=900&q=80",
-        "https://images.unsplash.com/photo-156199ñeplace?auto=format&fit=crop&w=900&q=80"
-      ],
-      prata:[
-        "https://images.unsplash.com/photo-1512496015851-a90fb38ba796?auto=format&fit=crop&w=900&q=80",
-        "https://images.unsplash.com/photo-1526178617557-8a0c6b1b4c0b?auto=format&fit=crop&w=900&q=80",
-        "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=900&q=80",
-        "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?auto=format&fit=crop&w=900&q=80"
-      ],
-      azul:[
-        "https://images.unsplash.com/photo-1551817958-20204f0a6cfb?auto=format&fit=crop&w=900&q=80",
-        "https://images.unsplash.com/photo-1564869731960-6fd2fd7e5f6b?auto=format&fit=crop&w=900&q=80",
-        "https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=900&q=80",
-        "https://images.unsplash.com/photo-1564869769548-1a1c6a9c1d6e?auto=format&fit=crop&w=900&q=80"
-      ]
-    }
-  },
-  {
-    nome: "iPhone 15 Pro – 512GB",
-    categoria: "iphone",
-    descricao: "iPhone 15 Pro — desempenho profissional e câmeras de alta fidelidade.",
-    preco: 9299.00 * 0.55,
-    maisVendido: true,
-    cores:["Prata","Preto","Dourado"],
-    imagens:{
-      prata:[
-        "https://images.unsplash.com/photo-1541807084-5c52b6b7f6d2?auto=format&fit=crop&w=900&q=80",
-        "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=900&q=80",
-        "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?auto=format&fit=crop&w=900&q=80",
-        "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=900&q=80"
-      ],
-      preto:[
-        "https://images.unsplash.com/photo-1510552776732-41a09a5d6e39?auto=format&fit=crop&w=900&q=80",
-        "https://images.unsplash.com/photo-1539883377977-7c4b9f7e5f1e?auto=format&fit=crop&w=900&q=80",
-        "https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=900&q=80",
-        "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=900&q=80"
-      ],
-      dourado:[
-        "https://images.unsplash.com/photo-1580910051074-5d1f082a7c6f?auto=format&fit=crop&w=900&q=80",
-        "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&w=900&q=80",
-        "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=900&q=80",
-        "https://images.unsplash.com/photo-1541807084-5c52b6b7f6d2?auto=format&fit=crop&w=900&q=80"
-      ]
-    }
-  },
-  {
-    nome: "iPhone 17 – 1TB",
-    categoria: "iphone",
-    descricao: "iPhone 17 — novo design, câmera quádrupla e armazenamento massivo.",
-    preco: 12999.00 * 0.55,
-    maisVendido: true,
-    // Somente Laranja e Azul Escuro conforme pedido
-    cores:["Laranja","Azul Escuro"],
-    imagens:{
-      laranja:[
-        "https://images.unsplash.com/photo-1580910329892-2b3f6c6a1a8f?auto=format&fit=crop&w=900&q=80",
-        "https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=900&q=80",
-        "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?auto=format&fit=crop&w=900&q=80",
-        "https://images.unsplash.com/photo-1564869769548-1a1c6a9c1d6e?auto=format&fit=crop&w=900&q=80"
-      ],
-      "azul escuro":[
-        "https://images.unsplash.com/photo-1551817958-20204f0a6cfb?auto=format&fit=crop&w=900&q=80",
-        "https://images.unsplash.com/photo-156199ñeplace?auto=format&fit=crop&w=900&q=80",
-        "https://images.unsplash.com/photo-1564869731960-6fd2fd7e5f6b?auto=format&fit=crop&w=900&q=80",
-        "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?auto=format&fit=crop&w=900&q=80"
-      ]
-    }
-  },
-  {
-    nome: "iPhone 16 – 512GB",
-    categoria: "iphone",
-    descricao: "iPhone 16 — performance extrema com novo processador.",
-    preco: 10999.00 * 0.55,
-    maisVendido:false,
-    cores:["Dourado","Prata","Azul"],
-    imagens:{
-      dourado:[
-        "https://images.unsplash.com/photo-1580910051074-5d1f082a7c6f?auto=format&fit=crop&w=900&q=80",
-        "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&w=900&q=80",
-        "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=900&q=80",
-        "https://images.unsplash.com/photo-1541807084-5c52b6b7f6d2?auto=format&fit=crop&w=900&q=80"
-      ],
-      prata:[
-        "https://images.unsplash.com/photo-1541807084-5c52b6b7f6d2?auto=format&fit=crop&w=900&q=80",
-        "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=900&q=80",
-        "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?auto=format&fit=crop&w=900&q=80",
-        "https://images.unsplash.com/photo-1564869769548-1a1c6a9c1d6e?auto=format&fit=crop&w=900&q=80"
-      ],
-      azul:[
-        "https://images.unsplash.com/photo-1551817958-20204f0a6cfb?auto=format&fit=crop&w=900&q=80",
-        "https://images.unsplash.com/photo-156199ñeplace?auto=format&fit=crop&w=900&q=80",
-        "https://images.unsplash.com/photo-1564869731960-6fd2fd7e5f6b?auto=format&fit=crop&w=900&q=80",
-        "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?auto=format&fit=crop&w=900&q=80"
-      ]
-    }
-  },
-  {
-    nome: "iPhone 15 – 256GB",
-    categoria: "iphone",
-    descricao: "iPhone 15 — equilíbrio entre performance e custo-benefício.",
-    preco: 6799.00 * 0.55,
-    maisVendido:false,
-    cores:["Rosa","Azul","Preto"],
-    imagens:{
-      rosa:[
-        "https://images.unsplash.com/photo-1692596321291-6fda8b8a2a1f?auto=format&fit=crop&w=900&q=80",
-        "https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=900&q=80",
-        "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=900&q=80",
-        "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?auto=format&fit=crop&w=900&q=80"
-      ],
-      azul:[
-        "https://images.unsplash.com/photo-1551817958-20204f0a6cfb?auto=format&fit=crop&w=900&q=80",
-        "https://images.unsplash.com/photo-156199ñeplace?auto=format&fit=crop&w=900&q=80",
-        "https://images.unsplash.com/photo-1564869731960-6fd2fd7e5f6b?auto=format&fit=crop&w=900&q=80",
-        "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=900&q=80"
-      ],
-      preto:[
-        "https://images.unsplash.com/photo-1510552776732-41a09a5d6e39?auto=format&fit=crop&w=900&q=80",
-        "https://images.unsplash.com/photo-1631972328599-bb3d9d5e0a1f?auto=format&fit=crop&w=900&q=80",
-        "https://images.unsplash.com/photo-1541807084-5c52b6b7f6d2?auto=format&fit=crop&w=900&q=80",
-        "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=900&q=80"
-      ]
-    }
-  },
-  {
-    nome: "iPhone 15 Plus – 256GB",
-    categoria: "iphone",
-    descricao: "iPhone 15 Plus — bateria maior e ótimas câmeras.",
-    preco: 7599.00 * 0.55,
-    maisVendido:false,
-    cores:["Azul","Preto","Branco"],
-    imagens:{
-      azul:[
-        "https://images.unsplash.com/photo-1692596321291-6fda8b8a2a1f?auto=format&fit=crop&w=900&q=80",
-        "https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=900&q=80",
-        "https://images.unsplash.com/photo-1631972328599-bb3d9d5e0a1f?auto=format&fit=crop&w=900&q=80",
-        "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=900&q=80"
-      ],
-      preto:[
-        "https://images.unsplash.com/photo-1510552776732-41a09a5d6e39?auto=format&fit=crop&w=900&q=80",
-        "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?auto=format&fit=crop&w=900&q=80",
-        "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=900&q=80",
-        "https://images.unsplash.com/photo-1564869769548-1a1c6a9c1d6e?auto=format&fit=crop&w=900&q=80"
-      ],
-      branco:[
-        "https://images.unsplash.com/photo-156199ñeplace?auto=format&fit=crop&w=900&q=80",
-        "https://images.unsplash.com/photo-1541807084-5c52b6b7f6d2?auto=format&fit=crop&w=900&q=80",
-        "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?auto=format&fit=crop&w=900&q=80",
-        "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=900&q=80"
-      ]
-    }
-  },
-  {
-    nome: "iPhone 14 Pro Max – 1TB",
-    categoria: "iphone",
-    descricao: "iPhone 14 Pro Max — ótimo custo-benefício no segmento premium.",
-    preco: 8999.00 * 0.55,
-    maisVendido:false,
-    cores:["Grafite","Dourado","Azul"],
-    imagens:{
-      grafite:[
-        "https://images.unsplash.com/photo-1630197872768-6b1acb260507?auto=format&fit=crop&w=900&q=80",
-        "https://images.unsplash.com/photo-1630197872764-6fda8b8a2a1f?auto=format&fit=crop&w=900&q=80",
-        "https://images.unsplash.com/photo-1630197872763-7b1acb260507?auto=format&fit=crop&w=900&q=80",
-        "https://images.unsplash.com/photo-1630197872762-6fda8b8a2a1f?auto=format&fit=crop&w=900&q=80"
-      ],
-      dourado:[
-        "https://images.unsplash.com/photo-1630197872767-5a9d8f6a2d4b?auto=format&fit=crop&w=900&q=80",
-        "https://images.unsplash.com/photo-1630197872765-3b9d1b7b2bcb?auto=format&fit=crop&w=900&q=80",
-        "https://images.unsplash.com/photo-1630197872766-4f0c6f9a2d3f?auto=format&fit=crop&w=900&q=80",
-        "https://images.unsplash.com/photo-1630197872768-6b1acb260507?auto=format&fit=crop&w=900&q=80"
-      ],
-      azul:[
-        "https://images.unsplash.com/photo-1692596321291-6fda8b8a2a1f?auto=format&fit=crop&w=900&q=80",
-        "https://images.unsplash.com/photo-1692596321295-6fda8b8a2a1f?auto=format&fit=crop&w=900&q=80",
-        "https://images.unsplash.com/photo-1692596321296-6fda8b8a2a1f?auto=format&fit=crop&w=900&q=80",
-        "https://images.unsplash.com/photo-1692596321291-6fda8b8a2a1f?auto=format&fit=crop&w=900&q=80"
-      ]
-    }
-  },
-  {
-    nome: "iPhone 14 Pro – 512GB",
-    categoria: "iphone",
-    descricao: "iPhone 14 Pro — câmeras excelentes e ótimo display.",
-    preco: 7599.00 * 0.55,
-    maisVendido:false,
-    cores:["Dourado","Prata","Preto"],
-    imagens:{
-      dourado:[
-        "https://images.unsplash.com/photo-1630197872767-5a9d8f6a2d4b?auto=format&fit=crop&w=900&q=80",
-        "https://images.unsplash.com/photo-1630197872765-3b9d1b7b2bcb?auto=format&fit=crop&w=900&q=80",
-        "https://images.unsplash.com/photo-1630197872762-6fda8b8a2a1f?auto=format&fit=crop&w=900&q=80",
-        "https://images.unsplash.com/photo-1630197872764-6fda8b8a2a1f?auto=format&fit=crop&w=900&q=80"
-      ],
-      prata:[
-        "https://images.unsplash.com/photo-1630197872763-7b1acb260507?auto=format&fit=crop&w=900&q=80",
-        "https://images.unsplash.com/photo-1630197872768-6b1acb260507?auto=format&fit=crop&w=900&q=80",
-        "https://images.unsplash.com/photo-1630197872761-92a839fa4f7e?auto=format&fit=crop&w=900&q=80",
-        "https://images.unsplash.com/photo-1630197872764-6fda8b8a2a1f?auto=format&fit=crop&w=900&q=80"
-      ],
-      preto:[
-        "https://images.unsplash.com/photo-1630197872766-4f0c6f9a2d3f?auto=format&fit=crop&w=900&q=80",
-        "https://images.unsplash.com/photo-1630197872762-6fda8b8a2a1f?auto=format&fit=crop&w=900&q=80",
-        "https://images.unsplash.com/photo-1630197872765-3b9d1b7b2bcb?auto=format&fit=crop&w=900&q=80",
-        "https://images.unsplash.com/photo-1630197872761-92a839fa4f7e?auto=format&fit=crop&w=900&q=80"
-      ]
-    }
-  },
-  {
-    nome: "iPhone 13 Pro Max – 512GB",
-    categoria: "iphone",
-    descricao: "iPhone 13 Pro Max — ótimo custo e durabilidade.",
-    preco: 6999.00 * 0.55,
-    maisVendido:false,
-    cores:["Grafite","Prata","Azul"],
-    imagens:{
-      grafite:[
-        "https://images.unsplash.com/photo-1630197872764-6fda8b8a2a1f?auto=format&fit=crop&w=900&q=80",
-        "https://images.unsplash.com/photo-1630197872761-92a839fa4f7e?auto=format&fit=crop&w=900&q=80",
-        "https://images.unsplash.com/photo-1630197872762-6fda8b8a2a1f?auto=format&fit=crop&w=900&q=80",
-        "https://images.unsplash.com/photo-1630197872763-7b1acb260507?auto=format&fit=crop&w=900&q=80"
-      ],
-      prata:[
-        "https://images.unsplash.com/photo-1630197872763-7b1acb260507?auto=format&fit=crop&w=900&q=80",
-        "https://images.unsplash.com/photo-1630197872768-6b1acb260507?auto=format&fit=crop&w=900&q=80",
-        "https://images.unsplash.com/photo-1630197872765-3b9d1b7b2bcb?auto=format&fit=crop&w=900&q=80",
-        "https://images.unsplash.com/photo-1630197872766-4f0c6f9a2d3f?auto=format&fit=crop&w=900&q=80"
-      ],
-      azul:[
-        "https://images.unsplash.com/photo-1692596321291-6fda8b8a2a1f?auto=format&fit=crop&w=900&q=80",
-        "https://images.unsplash.com/photo-1692596321295-6fda8b8a2a1f?auto=format&fit=crop&w=900&q=80",
-        "https://images.unsplash.com/photo-1692596321296-6fda8b8a2a1f?auto=format&fit=crop&w=900&q=80",
-        "https://images.unsplash.com/photo-1692596321291-6fda8b8a2a1f?auto=format&fit=crop&w=900&q=80"
-      ]
-    }
-  },
-  {
-    nome: "iPhone 13 Pro – 256GB",
-    categoria: "iphone",
-    descricao: "iPhone 13 Pro — excelente equilíbrio entre preço e recursos.",
-    preco: 6299.00 * 0.55,
-    maisVendido:false,
-    cores:["Prata","Grafite","Azul"],
-    imagens:{
-      prata:[
-        "https://images.unsplash.com/photo-1630197872763-7b1acb260507?auto=format&fit=crop&w=900&q=80",
-        "https://images.unsplash.com/photo-1630197872761-92a839fa4f7e?auto=format&fit=crop&w=900&q=80",
-        "https://images.unsplash.com/photo-1630197872765-3b9d1b7b2bcb?auto=format&fit=crop&w=900&q=80",
-        "https://images.unsplash.com/photo-1630197872766-4f0c6f9a2d3f?auto=format&fit=crop&w=900&q=80"
-      ],
-      grafite:[
-        "https://images.unsplash.com/photo-1630197872764-6fda8b8a2a1f?auto=format&fit=crop&w=900&q=80",
-        "https://images.unsplash.com/photo-1630197872762-6fda8b8a2a1f?auto=format&fit=crop&w=900&q=80",
-        "https://images.unsplash.com/photo-1630197872768-6b1acb260507?auto=format&fit=crop&w=900&q=80",
-        "https://images.unsplash.com/photo-1692596321291-6fda8b8a2a1f?auto=format&fit=crop&w=900&q=80"
-      ],
-      azul:[
-        "https://images.unsplash.com/photo-1692596321291-6fda8b8a2a1f?auto=format&fit=crop&w=900&q=80",
-        "https://images.unsplash.com/photo-1630197872767-5a9d8f6a2d4b?auto=format&fit=crop&w=900&q=80",
-        "https://images.unsplash.com/photo-1630197872765-3b9d1b7b2bcb?auto=format&fit=crop&w=900&q=80",
-        "https://images.unsplash.com/photo-1630197872764-6fda8b8a2a1f?auto=format&fit=crop&w=900&q=80"
-      ]
-    }
-  },
-  {
-    nome: "iPhone 13 Mini – 128GB",
-    categoria: "iphone",
-    descricao: "iPhone 13 Mini — compacto e potente.",
-    preco: 4499.00 * 0.55,
-    maisVendido:false,
-    cores:["Vermelho","Azul","Preto"],
-    imagens:{
-      vermelho:[
-        "https://images.unsplash.com/photo-1630197872762-6fda8b8a2a1f?auto=format&fit=crop&w=900&q=80",
-        "https://images.unsplash.com/photo-1630197872765-3b9d1b7b2bcb?auto=format&fit=crop&w=900&q=80",
-        "https://images.unsplash.com/photo-1630197872761-92a839fa4f7e?auto=format&fit=crop&w=900&q=80",
-        "https://images.unsplash.com/photo-1630197872763-7b1acb260507?auto=format&fit=crop&w=900&q=80"
-      ],
-      azul:[
-        "https://images.unsplash.com/photo-1692596321291-6fda8b8a2a1f?auto=format&fit=crop&w=900&q=80",
-        "https://images.unsplash.com/photo-1630197872766-4f0c6f9a2d3f?auto=format&fit=crop&w=900&q=80",
-        "https://images.unsplash.com/photo-1630197872768-6b1acb260507?auto=format&fit=crop&w=900&q=80",
-        "https://images.unsplash.com/photo-1630197872764-6fda8b8a2a1f?auto=format&fit=crop&w=900&q=80"
-      ],
-      preto:[
-        "https://images.unsplash.com/photo-1510552776732-41a09a5d6e39?auto=format&fit=crop&w=900&q=80",
-        "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?auto=format&fit=crop&w=900&q=80",
-        "https://images.unsplash.com/photo-1541807084-5c52b6b7f6d2?auto=format&fit=crop&w=900&q=80",
-        "https://images.unsplash.com/photo-1564869769548-1a1c6a9c1d6e?auto=format&fit=crop&w=900&q=80"
-      ]
-    }
-  },
+<section class="products">
 
-  // ---------- Apple Watch ----------
-  {
-    nome:"Apple Watch Ultra – GPS + Cellular",
-    categoria:"watch",
-    descricao:"Apple Watch Ultra: robusto, bateria longa e GPS integrado.",
-    preco:6299.00 * 0.55,
-    maisVendido:true,
-    cores:["Prata","Preto","Laranja"],
-    imagens:{
-      prata:[
-        "https://images.unsplash.com/photo-1519741490070-50f89f0c8f2d?auto=format&fit=crop&w=900&q=80",
-        "https://images.unsplash.com/photo-1539883377977-7c4b9f7e5f1e?auto=format&fit=crop&w=900&q=80",
-        "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=900&q=80",
-        "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=900&q=80"
-      ],
-      preto:[
-        "https://images.unsplash.com/photo-1519741490070-50f89f0c8f2d?auto=format&fit=crop&w=900&q=80",
-        "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?auto=format&fit=crop&w=900&q=80",
-        "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=900&q=80",
-        "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=900&q=80"
-      ],
-      laranja:[
-        "https://images.unsplash.com/photo-1603354356073-1f0a8f3a3b3f?auto=format&fit=crop&w=900&q=80",
-        "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?auto=format&fit=crop&w=900&q=80",
-        "https://images.unsplash.com/photo-1519741490070-50f89f0c8f2d?auto=format&fit=crop&w=900&q=80",
-        "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=900&q=80"
-      ]
-    }
-  },
-  {
-    nome:"Apple Watch Series 9 – GPS",
-    categoria:"watch",
-    descricao:"Apple Watch Series 9: acompanhamento de saúde e notificações inteligentes.",
-    preco:4199.00 * 0.55,
-    maisVendido:false,
-    cores:["Vermelho","Preto","Prata"],
-    imagens:{
-      vermelho:[
-        "https://images.unsplash.com/photo-1549921296-3e80f9f0edbd?auto=format&fit=crop&w=900&q=80",
-        "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?auto=format&fit=crop&w=900&q=80",
-        "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=900&q=80",
-        "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=900&q=80"
-      ],
-      preto:[
-        "https://images.unsplash.com/photo-1519741490070-50f89f0c8f2d?auto=format&fit=crop&w=900&q=80",
-        "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?auto=format&fit=crop&w=900&q=80",
-        "https://images.unsplash.com/photo-1549921296-3e80f9f0edbd?auto=format&fit=crop&w=900&q=80",
-        "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=900&q=80"
-      ],
-      prata:[
-        "https://images.unsplash.com/photo-1519741490070-50f89f0c8f2d?auto=format&fit=crop&w=900&q=80",
-        "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=900&q=80",
-        "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?auto=format&fit=crop&w=900&q=80",
-        "https://images.unsplash.com/photo-1549921296-3e80f9f0edbd?auto=format&fit=crop&w=900&q=80"
-      ]
-    }
-  },
+    <!-- iPhone 13 -->
+    <div class="product">
+        <img src="" alt="iPhone 13 - Preto">
+        <h2>iPhone 13 - Preto</h2>
+        <p>128GB - Apple iOS</p>
+        <p class="price">R$4.299 <span class="old-price">R$4.799</span></p>
+        <a href="#" class="buy-btn">Comprar</a>
+    </div>
 
-  // ---------- iPads ----------
-  {
-    nome:"iPad Pro 12.9 – 512GB",
-    categoria:"ipad",
-    descricao:"iPad Pro 12.9: Liquid Retina XDR para criação profissional.",
-    preco:11499.00 * 0.55,
-    maisVendido:true,
-    cores:["Cinza Espacial","Prata","Dourado"],
-    imagens:{
-      "cinza espacial":[
-        "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=900&q=80",
-        "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=900&q=80",
-        "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?auto=format&fit=crop&w=900&q=80",
-        "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&w=900&q=80"
-      ],
-      prata:[
-        "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&w=900&q=80",
-        "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=900&q=80",
-        "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=900&q=80",
-        "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?auto=format&fit=crop&w=900&q=80"
-      ],
-      dourado:[
-        "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=900&q=80",
-        "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&w=900&q=80",
-        "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?auto=format&fit=crop&w=900&q=80",
-        "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=900&q=80"
-      ]
-    }
-  },
-  {
-    nome:"iPad Air 5 – 256GB",
-    categoria:"ipad",
-    descricao:"iPad Air 5: leve, com chip M1 para produtividade e criatividade.",
-    preco:6799.00 * 0.55,
-    maisVendido:false,
-    cores:["Rosa","Cinza","Azul"],
-    imagens:{
-      rosa:[
-        "https://images.unsplash.com/photo-1549921296-3e80f9f0edbd?auto=format&fit=crop&w=900&q=80",
-        "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=900&q=80",
-        "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=900&q=80",
-        "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?auto=format&fit=crop&w=900&q=80"
-      ],
-      cinza:[
-        "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&w=900&q=80",
-        "https://images.unsplash.com/photo-1549921296-3e80f9f0edbd?auto=format&fit=crop&w=900&q=80",
-        "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=900&q=80",
-        "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=900&q=80"
-      ],
-      azul:[
-        "https://images.unsplash.com/photo-1564869769548-1a1c6a9c1d6e?auto=format&fit=crop&w=900&q=80",
-        "https://images.unsplash.com/photo-156199ñeplace?auto=format&fit=crop&w=900&q=80",
-        "https://images.unsplash.com/photo-1541807084-5c52b6b7f6d2?auto=format&fit=crop&w=900&q=80",
-        "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?auto=format&fit=crop&w=900&q=80"
-      ]
-    }
-  },
+    <div class="product">
+        <img src="" alt="iPhone 13 - Branco">
+        <h2>iPhone 13 - Branco</h2>
+        <p>128GB - Apple iOS</p>
+        <p class="price">R$4.299 <span class="old-price">R$4.799</span></p>
+        <a href="#" class="buy-btn">Comprar</a>
+    </div>
 
-  // ---------- MacBooks ----------
-  {
-    nome:"MacBook Pro 16\" M2 Max – 64GB / 2TB",
-    categoria:"macbook",
-    descricao:"MacBook Pro 16” M2 Max — performance profissional para edição e render.",
-    preco:35999.00 * 0.55,
-    maisVendido:true,
-    cores:["Prata","Cinza Espacial","Preto"],
-    imagens:{
-      prata:[
-        "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&w=1200&q=80",
-        "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=1200&q=80",
-        "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=1200&q=80",
-        "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?auto=format&fit=crop&w=1200&q=80"
-      ],
-      "cinza espacial":[
-        "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&w=1200&q=80",
-        "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=1200&q=80",
-        "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=1200&q=80",
-        "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?auto=format&fit=crop&w=1200&q=80"
-      ],
-      preto:[
-        "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=1200&q=80",
-        "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&w=1200&q=80",
-        "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?auto=format&fit=crop&w=1200&q=80",
-        "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=1200&q=80"
-      ]
-    }
-  },
-  {
-    nome:"MacBook Pro 14\" M2 Pro – 32GB / 1TB",
-    categoria:"macbook",
-    descricao:"MacBook Pro 14” M2 Pro — ideal para criadores que precisam de mobilidade e potência.",
-    preco:22499.00 * 0.55,
-    maisVendido:false,
-    cores:["Prata","Cinza Espacial","Preto"],
-    imagens:{
-      prata:[
-        "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?auto=format&fit=crop&w=1200&q=80",
-        "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&w=1200&q=80",
-        "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=1200&q=80",
-        "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=1200&q=80"
-      ],
-      "cinza espacial":[
-        "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?auto=format&fit=crop&w=1200&q=80",
-        "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=1200&q=80",
-        "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&w=1200&q=80",
-        "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=1200&q=80"
-      ],
-      preto:[
-        "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=1200&q=80",
-        "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?auto=format&fit=crop&w=1200&q=80",
-        "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=1200&q=80",
-        "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&w=1200&q=80"
-      ]
-    }
-  },
-  {
-    nome:"MacBook Air M2 – 16GB / 512GB",
-    categoria:"macbook",
-    descricao:"MacBook Air M2 — ultrafino, leve e com excelente autonomia.",
-    preco:12999.00 * 0.55,
-    maisVendido:false,
-    cores:["Cinza Espacial","Prata","Dourado"],
-    imagens:{
-      "cinza espacial":[
-        "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&w=1200&q=80",
-        "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=1200&q=80",
-        "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?auto=format&fit=crop&w=1200&q=80",
-        "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=1200&q=80"
-      ],
-      prata:[
-        "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=1200&q=80",
-        "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&w=1200&q=80",
-        "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?auto=format&fit=crop&w=1200&q=80",
-        "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=1200&q=80"
-      ],
-      dourado:[
-        "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&w=1200&q=80",
-        "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=1200&q=80",
-        "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?auto=format&fit=crop&w=1200&q=80",
-        "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=1200&q=80"
-      ]
-    }
-  },
-  {
-    nome:"MacBook Pro 13\" M2 – 16GB / 512GB",
-    categoria:"macbook",
-    descricao:"MacBook Pro 13” — portátil, com bom desempenho para produtividade.",
-    preco:14999.00 * 0.55,
-    maisVendido:false,
-    cores:["Cinza Espacial","Prata","Preto"],
-    imagens:{
-      "cinza espacial":[
-        "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&w=1200&q=80",
-        "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=1200&q=80",
-        "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?auto=format&fit=crop&w=1200&q=80",
-        "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=1200&q=80"
-      ],
-      prata:[
-        "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=1200&q=80",
-        "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&w=1200&q=80",
-        "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?auto=format&fit=crop&w=1200&q=80",
-        "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=1200&q=80"
-      ],
-      preto:[
-        "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=1200&q=80",
-        "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?auto=format&fit=crop&w=1200&q=80",
-        "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&w=1200&q=80",
-        "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=1200&q=80"
-      ]
-    }
-  }
-];
+    <!-- iPhone 14 -->
+    <div class="product">
+        <img src="" alt="iPhone 14 - Azul">
+        <h2>iPhone 14 - Azul</h2>
+        <p>256GB - Apple iOS</p>
+        <p class="price">R$5.299 <span class="old-price">R$5.799</span></p>
+        <a href="#" class="buy-btn">Comprar</a>
+    </div>
 
+    <div class="product">
+        <img src="" alt="iPhone 14 - Vermelho">
+        <h2>iPhone 14 - Vermelho</h2>
+        <p>256GB - Apple iOS</p>
+        <p class="price">R$5.299 <span class="old-price">R$5.799</span></p>
+        <a href="#" class="buy-btn">Comprar</a>
+    </div>
+
+    <!-- iPhone 15 -->
+    <div class="product">
+        <img src="" alt="iPhone 15 - Verde">
+        <h2>iPhone 15 - Verde</h2>
+        <p>512GB - Apple iOS</p>
+        <p class="price">R$6.499 <span class="old-price">R$6.999</span></p>
+        <a href="#" class="buy-btn">Comprar</a>
+    </div>
+
+    <!-- Apple Watch -->
+    <div class="product">
+        <img src="" alt="Apple Watch Series 9 - Preto">
+        <h2>Apple Watch Series 9 - Preto</h2>
+        <p>GPS + Cellular</p>
+        <p class="price">R$3.299 <span class="old-price">R$3.599</span></p>
+        <a href="#" class="buy-btn">Comprar</a>
+    </div>
+
+    <div class="product">
+        <img src="" alt="Apple Watch SE - Prata">
+        <h2>Apple Watch SE - Prata</h2>
+        <p>GPS</p>
+        <p class="price">R$2.199 <span class="old-price">R$2.499</span></p>
+        <a href="#" class="buy-btn">Comprar</a>
+    </div>
+
+    <!-- iPad -->
+    <div class="product">
+        <img src="" alt="iPad Air - Cinza">
+        <h2>iPad Air - Cinza</h2>
+        <p>64GB - Wi-Fi</p>
+        <p class="price">R$4.199 <span class="old-price">R$4.599</span></p>
+        <a href="#" class="buy-btn">Comprar</a>
+    </div>
+
+    <div class="product">
+        <img src="" alt="iPad Pro - Prata">
+        <h2>iPad Pro - Prata</h2>
+        <p>256GB - Wi-Fi + Cellular</p>
+        <p class="price">R$7.499 <span class="old-price">R$7.999</span></p>
+        <a href="#" class="buy-btn">Comprar</a>
+    </div>
+
+    <!-- MacBooks -->
+    <div class="product">
+        <img src="" alt="MacBook Air M2 - Cinza">
+        <h2>MacBook Air M2 - Cinza</h2>
+        <p>256GB SSD - Apple M2</p>
+        <p class="price">R$9.499 <span class="old-price">R$9.999</span></p>
+        <a href="#" class="buy-btn">Comprar</a>
+    </div>
+
+    <div class="product">
+        <img src="" alt="MacBook Pro 14 - Prata">
+        <h2>MacBook Pro 14 - Prata</h2>
+        <p>512GB SSD - Apple M2 Pro</p>
+        <p class="price">R$14.999 <span class="old-price">R$15.499</span></p>
+        <a href="#" class="buy-btn">Comprar</a>
+    </div>
 /* ------------- Normaliza preços (toFixed & convert to number) ------------- */
 produtos.forEach(p=>{
   if(typeof p.preco === 'number'){
