@@ -1,125 +1,91 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Eletroniks Store — Completo</title>
-<link rel="preconnect" href="https://images.unsplash.com">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Eletroniks Store</title>
 <style>
-  :root{
-    --bg:#f4f5f7;
-    --card-bg:#ffffff;
-    --accent:#0b1221;
-    --muted:#6b7280;
-    --glass: rgba(255,255,255,0.6);
-  }
-  *{box-sizing:border-box;margin:0;padding:0}
-  body{font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; background:var(--bg); color:#0f1724; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale}
-  header{
-    height:60vh;
-    min-height:380px;
-    background-image:linear-gradient(180deg, rgba(11,18,33,0.6), rgba(11,18,33,0.2)), url('https://images.unsplash.com/photo-1573497491208-6b1acb260507?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1400');
-    background-size:cover;background-position:center;
-    display:flex;align-items:center;justify-content:center;text-align:center;color:#fff;padding:3rem 1.2rem;
-  }
-  header .hero {
-    max-width:1100px;
-  }
-  header h1{font-size:2.2rem;letter-spacing:0.4px;margin-bottom:.6rem}
-  header p{opacity:.95;max-width:860px;margin:0 auto 1.2rem;font-size:1.02rem;line-height:1.5}
-  header button{background:#fff;color:#0b1221;padding:.6rem 1.1rem;border-radius:10px;font-weight:700;border:none;cursor:pointer;box-shadow:0 6px 20px rgba(2,6,23,0.18)}
-  .container{max-width:1200px;margin:2rem auto;padding:0 1rem}
-  .category-bar{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-bottom:1.6rem}
-  .category-bar button{background:#0b1221;color:#fff;padding:.55rem 1rem;border-radius:999px;border:none;font-weight:700;cursor:pointer;opacity:.95}
-  .category-bar button[aria-pressed="true"]{box-shadow:0 8px 28px rgba(11,18,33,0.14);transform:translateY(-3px)}
-  /* Grid */
-  .category-block{margin-bottom:2.6rem}
-  .category-block h2{font-size:1.25rem;margin:0 0 .8rem;color:#0b1221;display:flex;align-items:center;gap:.6rem}
-  .produtos-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:18px}
-  /* Card moderno */
-  .card{
-    background:var(--card-bg);
-    border-radius:14px;
-    padding:14px;
-    position:relative;
-    overflow:visible;
-    transition:transform .22s ease, box-shadow .22s ease;
-    display:flex;flex-direction:column;height:100%;
-    border:1px solid rgba(11,18,33,0.04);
-  }
-  .card:hover{transform:translateY(-8px);box-shadow:0 18px 50px rgba(11,18,33,0.08)}
-  .card .img-wrap{
-    border-radius:12px;
-    padding:6px;
-    background:linear-gradient(180deg, rgba(2,6,23,0.02), rgba(2,6,23,0.01));
-    display:block; margin-bottom:10px; position:relative;
-    border: 1px solid rgba(11,18,33,0.035);
-  }
-  .card .img-wrap::after{
-    content:"";
-    position:absolute;inset:0;border-radius:12px;pointer-events:none;
-    box-shadow:inset 0 -18px 40px rgba(2,6,23,0.02);
-  }
-  .card img{width:100%;height:210px;object-fit:cover;border-radius:8px;display:block}
-  .card h3{font-size:1rem;margin:8px 0 6px;line-height:1.25}
-  .tag-more{position:absolute;top:12px;left:12px;background:linear-gradient(90deg,#ffb347,#ff6a00);color:#fff;padding:6px 9px;border-radius:12px;font-weight:800;font-size:0.82rem;box-shadow:0 6px 20px rgba(255,106,0,0.18)}
-  .desc{color:var(--muted);font-size:0.9rem;height:44px;overflow:hidden;margin-bottom:8px}
-  .price-row{display:flex;align-items:center;justify-content:space-between;gap:12px}
-  .preco{font-weight:800;font-size:1.08rem;color:#0b9b6e}
-  .old-price{font-size:0.85rem;text-decoration:line-through;color:#9aa0a6}
-  /* Cores */
-  .cores{display:flex;gap:8px;align-items:center;margin-top:10px;flex-wrap:wrap}
-  .color-btn{width:34px;height:34px;border-radius:8px;border:2px solid rgba(11,18,33,0.06);cursor:pointer;display:inline-flex;align-items:center;justify-content:center}
-  .color-btn.selected{outline:3px solid rgba(11,153,110,0.12);transform:translateY(-3px)}
-  .actions{margin-top:auto}
-  .btn-buy{display:inline-block;width:100%;padding:10px;border-radius:10px;background:#0b1221;color:#fff;border:none;font-weight:800;cursor:pointer;box-shadow:0 10px 26px rgba(11,18,33,0.08)}
-  footer{padding:16px;text-align:center;color:#9aa0a6;font-size:14px;margin-top:36px}
-  /* Responsive tweaks */
-  @media(max-width:640px){
-    .card img{height:170px}
-    header h1{font-size:1.4rem}
-  }
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background: #f4f4f4;
+    }
+    header {
+        background: #000;
+        color: #fff;
+        padding: 20px;
+        text-align: center;
+    }
+    h1 {
+        margin: 0;
+    }
+    .products {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+        padding: 20px;
+    }
+    .product {
+        background: #fff;
+        border-radius: 10px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        padding: 15px;
+        text-align: center;
+        transition: transform 0.2s;
+    }
+    .product:hover {
+        transform: translateY(-5px);
+    }
+    .product img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        border-radius: 10px;
+        margin-bottom: 10px;
+    }
+    .product h2 {
+        font-size: 1.1em;
+        margin: 10px 0 5px;
+    }
+    .product p {
+        font-size: 0.9em;
+        margin: 5px 0;
+        color: #555;
+    }
+    .price {
+        font-size: 1.1em;
+        color: #000;
+        margin: 5px 0;
+    }
+    .old-price {
+        text-decoration: line-through;
+        color: #888;
+        font-size: 0.9em;
+        margin-left: 5px;
+    }
+    .buy-btn {
+        display: inline-block;
+        margin-top: 10px;
+        padding: 10px 15px;
+        background: #000;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        text-decoration: none;
+    }
+    .buy-btn:hover {
+        background: #444;
+    }
 </style>
 </head>
 <body>
 
 <header>
-  <div class="hero">
-    <h1>SEJA BEM-VINDO(A) À Eletroniks Store</h1>
-    <p>Loja especializada em produtos Apple desde 2018 — qualidade, garantia e entregas seguras. Confira nossos preços promocionais.</p>
-    <button id="btn-cadastrar">Fique por dentro</button>
-  </div>
+    <h1>Eletroniks Store</h1>
 </header>
 
-<main class="container">
-  <div class="category-bar" role="tablist" aria-label="Categorias">
-    <button data-cat="iphone" aria-pressed="true">iPhones</button>
-    <button data-cat="watch" aria-pressed="false">Apple Watch</button>
-    <button data-cat="ipad" aria-pressed="false">iPads</button>
-    <button data-cat="macbook" aria-pressed="false">MacBooks</button>
-  </div>
-
-  <div id="catalogo"></div>
-</main>
-
-<footer>
-  &copy; 2025 Eletroniks Store — Todos os direitos reservados
-</footer>
-
-<script>
-/*
-  Dados de produtos (com imagens públicas do Unsplash - correspondentes visualmente).
-  Estrutura:
-  {
-    nome, categoria, descricao, preco (number), precoLoja (opcional),
-    maisVendido: true/false,
-    cores: ["NomeCor1","NomeCor2","NomeCor3" ...],
-    imagens: { "nomecorlower": [urlFront, urlBack, urlSide, urlAngle], ... }
-  }
-*/
-
-/* *********** Produtos (com 4 imagens por cor) *********** */
-const produtos = [
 <section class="products">
 
     <!-- iPhone 13 -->
@@ -130,7 +96,6 @@ const produtos = [
         <p class="price">R$4.299 <span class="old-price">R$4.799</span></p>
         <a href="#" class="buy-btn">Comprar</a>
     </div>
-
     <div class="product">
         <img src="" alt="iPhone 13 - Branco">
         <h2>iPhone 13 - Branco</h2>
@@ -147,7 +112,6 @@ const produtos = [
         <p class="price">R$5.299 <span class="old-price">R$5.799</span></p>
         <a href="#" class="buy-btn">Comprar</a>
     </div>
-
     <div class="product">
         <img src="" alt="iPhone 14 - Vermelho">
         <h2>iPhone 14 - Vermelho</h2>
@@ -164,6 +128,45 @@ const produtos = [
         <p class="price">R$6.499 <span class="old-price">R$6.999</span></p>
         <a href="#" class="buy-btn">Comprar</a>
     </div>
+    <div class="product">
+        <img src="" alt="iPhone 15 - Roxo">
+        <h2>iPhone 15 - Roxo</h2>
+        <p>512GB - Apple iOS</p>
+        <p class="price">R$6.499 <span class="old-price">R$6.999</span></p>
+        <a href="#" class="buy-btn">Comprar</a>
+    </div>
+
+    <!-- iPhone 16 -->
+    <div class="product">
+        <img src="" alt="iPhone 16 - Preto">
+        <h2>iPhone 16 - Preto</h2>
+        <p>1TB - Apple iOS</p>
+        <p class="price">R$8.999 <span class="old-price">R$9.499</span></p>
+        <a href="#" class="buy-btn">Comprar</a>
+    </div>
+    <div class="product">
+        <img src="" alt="iPhone 16 - Branco">
+        <h2>iPhone 16 - Branco</h2>
+        <p>1TB - Apple iOS</p>
+        <p class="price">R$8.999 <span class="old-price">R$9.499</span></p>
+        <a href="#" class="buy-btn">Comprar</a>
+    </div>
+
+    <!-- iPhone 17 -->
+    <div class="product">
+        <img src="" alt="iPhone 17 - Dourado">
+        <h2>iPhone 17 - Dourado</h2>
+        <p>1TB - Apple iOS</p>
+        <p class="price">R$10.499 <span class="old-price">R$10.999</span></p>
+        <a href="#" class="buy-btn">Comprar</a>
+    </div>
+    <div class="product">
+        <img src="" alt="iPhone 17 - Prata">
+        <h2>iPhone 17 - Prata</h2>
+        <p>1TB - Apple iOS</p>
+        <p class="price">R$10.499 <span class="old-price">R$10.999</span></p>
+        <a href="#" class="buy-btn">Comprar</a>
+    </div>
 
     <!-- Apple Watch -->
     <div class="product">
@@ -173,7 +176,6 @@ const produtos = [
         <p class="price">R$3.299 <span class="old-price">R$3.599</span></p>
         <a href="#" class="buy-btn">Comprar</a>
     </div>
-
     <div class="product">
         <img src="" alt="Apple Watch SE - Prata">
         <h2>Apple Watch SE - Prata</h2>
@@ -182,7 +184,7 @@ const produtos = [
         <a href="#" class="buy-btn">Comprar</a>
     </div>
 
-    <!-- iPad -->
+    <!-- iPads -->
     <div class="product">
         <img src="" alt="iPad Air - Cinza">
         <h2>iPad Air - Cinza</h2>
@@ -190,7 +192,6 @@ const produtos = [
         <p class="price">R$4.199 <span class="old-price">R$4.599</span></p>
         <a href="#" class="buy-btn">Comprar</a>
     </div>
-
     <div class="product">
         <img src="" alt="iPad Pro - Prata">
         <h2>iPad Pro - Prata</h2>
@@ -207,7 +208,6 @@ const produtos = [
         <p class="price">R$9.499 <span class="old-price">R$9.999</span></p>
         <a href="#" class="buy-btn">Comprar</a>
     </div>
-
     <div class="product">
         <img src="" alt="MacBook Pro 14 - Prata">
         <h2>MacBook Pro 14 - Prata</h2>
@@ -215,209 +215,15 @@ const produtos = [
         <p class="price">R$14.999 <span class="old-price">R$15.499</span></p>
         <a href="#" class="buy-btn">Comprar</a>
     </div>
-/* ------------- Normaliza preços (toFixed & convert to number) ------------- */
-produtos.forEach(p=>{
-  if(typeof p.preco === 'number'){
-    p.preco = Number(p.preco.toFixed(2));
-  } else {
-    // se por acaso foi passado como string com cálculo
-    p.preco = Number((Number(p.preco) * 1).toFixed(2));
-  }
-});
+    <div class="product">
+        <img src="" alt="MacBook Pro 16 - Cinza">
+        <h2>MacBook Pro 16 - Cinza</h2>
+        <p>1TB SSD - Apple M2 Max</p>
+        <p class="price">R$19.999 <span class="old-price">R$20.499</span></p>
+        <a href="#" class="buy-btn">Comprar</a>
+    </div>
 
-/* ------------- Renderização + interatividade ------------- */
-const catalogo = document.getElementById('catalogo');
-const categoryButtons = document.querySelectorAll('.category-bar button');
-
-// Util: agrupa por categoria e retorna ordenado (maisVendido primeiro)
-function groupByCategory(){
-  const map = {};
-  produtos.forEach(p=>{
-    const cat = p.categoria;
-    if(!map[cat]) map[cat] = [];
-    map[cat].push(p);
-  });
-  // ordenar cada categoria: maisVendido true primeiro (manter ordem dentro)
-  Object.keys(map).forEach(cat=>{
-    map[cat].sort((a,b)=> (b.maisVendido?1:0) - (a.maisVendido?1:0));
-  });
-  return map;
-}
-
-function colorKeyNormalize(name){ return name.toLowerCase(); }
-
-function renderCategoria(catToShow=null){
-  catalogo.innerHTML = '';
-  const grouped = groupByCategory();
-  for(const cat in grouped){
-    if(catToShow && cat.toLowerCase() !== catToShow.toLowerCase()) continue;
-
-    const block = document.createElement('section');
-    block.className = 'category-block';
-
-    const title = document.createElement('h2');
-    title.innerHTML = `${cat} <span style="font-size:.9rem;color:var(--muted);margin-left:.4rem">(${grouped[cat].length})</span>`;
-    block.appendChild(title);
-
-    const grid = document.createElement('div');
-    grid.className = 'produtos-grid';
-
-    grouped[cat].forEach((prod, idx) => {
-      const card = document.createElement('article');
-      card.className = 'card';
-
-      // escolha inicial de cor = primeira disponível
-      const defaultColor = prod.cores[0];
-      const defaultKey = colorKeyNormalize(defaultColor);
-      const defaultImg = (prod.imagens && prod.imagens[defaultKey] && prod.imagens[defaultKey][0]) ? prod.imagens[defaultKey][0] : '';
-
-      const markup = `
-        ${prod.maisVendido ? '<div class="tag-more">🔥 Mais Vendido</div>' : ''}
-        <div class="img-wrap">
-          <img id="img-${cat}-${idx}" src="${defaultImg}" alt="${prod.nome}">
-        </div>
-        <h3>${prod.nome}</h3>
-        <p class="desc">${prod.descricao}</p>
-        <div class="price-row" style="margin-top:8px">
-          <div>
-            <div class="preco">R$ ${prod.preco.toLocaleString('pt-BR',{minimumFractionDigits:2})}</div>
-          </div>
-          <div style="text-align:right">
-            ${prod.preco ? `<div class="old-price">de R$ ${( (prod.preco/0.55) ).toLocaleString('pt-BR',{minimumFractionDigits:2})}</div>` : ''}
-          </div>
-        </div>
-        <div class="cores" id="cores-${cat}-${idx}"></div>
-        <div class="actions">
-          <button class="btn-buy" data-prod="${prod.nome}">Comprar</button>
-        </div>
-      `;
-      card.innerHTML = markup;
-      grid.appendChild(card);
-
-      // montar botões de cor
-      const coresDiv = card.querySelector(`#cores-${cat}-${idx}`);
-      prod.cores.forEach((cor,i)=>{
-        const key = colorKeyNormalize(cor);
-        const btn = document.createElement('button');
-        btn.className = 'color-btn';
-        btn.title = cor;
-        // tentar setar cor visual, quando válida; caso contrário, usar gradiente neutro
-        const colorCss = (cor.toLowerCase()==='prata' || cor.toLowerCase()==='cinza espacial' || cor.toLowerCase()==='grafite') ? '#e6e9ee' : (cor.toLowerCase()==='dourado' ? '#d4af37' : cor.toLowerCase());
-        btn.style.background = colorCss;
-        if(i===0) btn.classList.add('selected');
-
-        btn.addEventListener('click', ()=>{
-          // remover selected de irmãos
-          coresDiv.querySelectorAll('.color-btn').forEach(b=>b.classList.remove('selected'));
-          btn.classList.add('selected');
-
-          // trocar imagem para a primeira da cor selecionada
-          const imgEl = document.getElementById(`img-${cat}-${idx}`);
-          if(prod.imagens && prod.imagens[key] && prod.imagens[key].length){
-            imgEl.src = prod.imagens[key][0];
-            // armazenar índice de imagem atual (se precisar de carrossel depois)
-            imgEl.dataset.color = key;
-            imgEl.dataset.imgIndex = 0;
-          } else {
-            // fallback: pega primeira imagem de qualquer cor
-            const any = Object.values(prod.imagens)[0];
-            if(any) imgEl.src = any[0];
-          }
-        });
-
-        coresDiv.appendChild(btn);
-      });
-
-      // clique na imagem abre modal simples com galeria daquela cor
-      const imgEl = card.querySelector(`#img-${cat}-${idx}`);
-      imgEl.style.cursor = 'zoom-in';
-      imgEl.addEventListener('click', ()=>{
-        const key = imgEl.dataset.color || colorKeyNormalize(prod.cores[0]);
-        const imgs = (prod.imagens && prod.imagens[key]) ? prod.imagens[key] : (Object.values(prod.imagens)[0] || []);
-        openGallery(imgs);
-      });
-
-      // botão comprar (alert temporário)
-      const buyBtn = card.querySelector('.btn-buy');
-      buyBtn.addEventListener('click', ()=>{
-        alert(`Produto adicionado ao checkout:\\n${prod.nome} — R$ ${prod.preco.toLocaleString('pt-BR',{minimumFractionDigits:2})}`);
-      });
-    });
-
-    block.appendChild(grid);
-    catalogo.appendChild(block);
-  }
-}
-
-// Modal/galleria simples
-function openGallery(imgs){
-  // criar overlay
-  const overlay = document.createElement('div');
-  overlay.style.position='fixed';
-  overlay.style.inset=0;
-  overlay.style.background='rgba(2,6,23,0.85)';
-  overlay.style.display='flex';
-  overlay.style.alignItems='center';
-  overlay.style.justifyContent='center';
-  overlay.style.zIndex=9999;
-  overlay.addEventListener('click', ()=> document.body.removeChild(overlay));
-
-  const box = document.createElement('div');
-  box.style.maxWidth='92%';
-  box.style.maxHeight='92%';
-  box.style.background='transparent';
-  box.style.position='relative';
-  box.style.display='flex';
-  box.style.alignItems='center';
-  box.style.justifyContent='center';
-  box.addEventListener('click', e=>e.stopPropagation());
-
-  const img = document.createElement('img');
-  img.src = imgs[0] || '';
-  img.style.maxWidth='100%';
-  img.style.maxHeight='100%';
-  img.style.borderRadius='10px';
-  img.style.boxShadow='0 20px 60px rgba(0,0,0,0.6)';
-  img.style.objectFit='contain';
-  box.appendChild(img);
-
-  // controles prev/next
-  let idx=0;
-  if(imgs.length>1){
-    const prev = document.createElement('button');
-    prev.textContent='<';
-    Object.assign(prev.style,{position:'absolute',left:'8px',top:'50%',transform:'translateY(-50%)',background:'rgba(255,255,255,0.08)',border:'none',color:'#fff',fontSize:'22px',padding:'10px',borderRadius:'8px',cursor:'pointer'});
-    prev.addEventListener('click', ()=>{ idx = (idx-1+imgs.length)%imgs.length; img.src = imgs[idx]; });
-    box.appendChild(prev);
-
-    const next = document.createElement('button');
-    next.textContent='>';
-    Object.assign(next.style,{position:'absolute',right:'8px',top:'50%',transform:'translateY(-50%)',background:'rgba(255,255,255,0.08)',border:'none',color:'#fff',fontSize:'22px',padding:'10px',borderRadius:'8px',cursor:'pointer'});
-    next.addEventListener('click', ()=>{ idx = (idx+1)%imgs.length; img.src = imgs[idx]; });
-    box.appendChild(next);
-  }
-
-  overlay.appendChild(box);
-  document.body.appendChild(overlay);
-}
-
-// Filtrar por categoria via barra
-document.querySelectorAll('.category-bar button').forEach(btn=>{
-  btn.addEventListener('click', ()=>{
-    document.querySelectorAll('.category-bar button').forEach(b=>b.setAttribute('aria-pressed','false'));
-    btn.setAttribute('aria-pressed','true');
-    renderCategoria(btn.dataset.cat);
-  });
-});
-
-// render inicial (todas categorias)
-renderCategoria();
-
-/* ------------- Botão 'Fique por dentro' abre o cadastro simples ------------- */
-document.getElementById('btn-cadastrar').addEventListener('click', ()=>{
-  alert('Insira aqui o fluxo de cadastro que deseja. (Funcionalidade de exemplo)');
-});
-</script>
+</section>
 
 </body>
 </html>
