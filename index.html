@@ -1,361 +1,864 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Eletroniks Store</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Eletroniks Store — Completo</title>
+<link rel="preconnect" href="https://images.unsplash.com">
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Helvetica Neue',Arial,sans-serif;}
-body{background:#f4f4f5;color:#1c1c1e;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
-a{text-decoration:none;color:inherit}
-button, .category-bar button, .top-menu a{transition:all 0.35s cubic-bezier(.22,.9,.35,1);}
-button{cursor:pointer;border:none}
-header{height:70vh;display:flex;flex-direction:column;align-items:center;justify-content:center;background:url('https://images.unsplash.com/photo-1573497491208-6b1acb260507?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1400') center/cover no-repeat;color:#fff;text-align:center;padding:2rem}
-header h1{font-size:2.6rem;letter-spacing:1px;margin-bottom:0.6rem}
-header p{font-size:1.05rem;margin-bottom:1.4rem;max-width:760px;line-height:1.5}
-header button{padding:0.7rem 1.6rem;background:#111;color:#fff;border-radius:10px}
-header button:hover{transform:translateY(-3px);opacity:0.95}
-.top-menu{position:fixed;top:12px;left:12px;display:flex;flex-direction:column;gap:10px;z-index:1200}
-.top-menu a{padding:0.45rem 0.9rem;background:rgba(17,17,17,0.95);color:#fff;border-radius:8px;font-weight:600}
-.top-menu a:hover{transform:translateX(6px);box-shadow:0 8px 20px rgba(0,0,0,0.18)}
-.container{width:92%;max-width:1200px;margin:2rem auto}
-.category-bar{display:flex;justify-content:center;margin-bottom:1.6rem;gap:10px;flex-wrap:wrap}
-.category-bar button{padding:0.55rem 1rem;background:#222;color:#fff;border-radius:18px;font-weight:700}
-.category-bar button.active{background:#444}
-.category-bar button:hover{transform:translateY(-3px)}
-.produtos{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px}
-.card{background:#fff;border-radius:12px;padding:14px;box-shadow:0 6px 18px rgba(0,0,0,0.08);text-align:center;position:relative;overflow:visible}
-.card:hover{transform:translateY(-6px)}
-.card img{width:100%;height:200px;object-fit:contain;border-radius:8px}
-.card h3{margin:12px 0 6px;font-size:1.05rem}
-.card .descricao{font-size:0.9rem;color:#555;height:54px;overflow:hidden}
-.card .preco{font-size:1.15rem;font-weight:800;margin:8px 0}
-.button-buy{display:inline-block;padding:8px 14px;border-radius:8px;background:#111;color:#fff;font-weight:700}
-.button-buy:hover{transform:scale(1.03)}
-.arrow{position:absolute;top:48%;transform:translateY(-50%);background:rgba(0,0,0,0.8);color:#fff;border-radius:50%;width:36px;height:36px;border:none}
-.arrow.left{left:8px}
-.arrow.right{right:8px}
-.arrow:hover{transform:translateY(-50%) scale(1.06)}
-.hot-badge{position:absolute;top:10px;left:10px;background:linear-gradient(90deg,#ffb347,#ff6a00);color:#fff;padding:6px 10px;border-radius:10px;font-weight:800;font-size:0.85rem}
-.fire-border{position:relative;border-radius:14px;padding:3px;background:linear-gradient(180deg,transparent,transparent);}
-.fire-border::before{content:"";position:absolute;inset:-4px;border-radius:18px;padding:2px;background:conic-gradient(from 200deg,#ff6a00,#ffb347,#ff3b3b,#ff6a00);filter:blur(6px);opacity:0.95;z-index:-1;animation:burn 1.8s linear infinite}
-@keyframes burn{0%{transform:translateY(0) rotate(0deg)}50%{transform:translateY(-1px) rotate(1deg)}100%{transform:translateY(0) rotate(0deg)}}
-.modal{display:none;position:fixed;z-index:1300;left:0;top:0;width:100%;height:100%;background:rgba(0,0,0,0.9);padding-top:50px}
-.modal img{display:block;margin:auto;max-width:80%;max-height:80%;border-radius:8px}
-.modal .fechar{position:absolute;top:18px;right:30px;color:#fff;font-size:2rem;cursor:pointer}
-#cadastro-section{display:none;flex-direction:column;align-items:center;justify-content:center;height:100vh;text-align:center;background:url('https://images.unsplash.com/photo-1581091870626-03d7dbad6bfb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1400') center/cover no-repeat;padding:2rem;opacity:0;transform:translateY(40px);transition:all 0.7s cubic-bezier(.22,.9,.35,1)}
-#cadastro-section.show{opacity:1;transform:translateY(0)}
-#cadastro-section.hide{opacity:0;transform:translateY(-50px)}
-#cadastro-section input{width:320px;padding:0.65rem;margin:0.45rem 0;border-radius:8px;border:1px solid rgba(0,0,0,0.12)}
-#cadastro-section button{padding:0.7rem 1.5rem;border-radius:10px;background:#111;color:#fff}
-footer{background:#111;color:#fff;text-align:center;padding:1rem;margin-top:2rem}
-@media(max-width:640px){header h1{font-size:1.6rem}#cadastro-section input{width:88%}}
+  :root{
+    --bg:#f4f5f7;
+    --card-bg:#ffffff;
+    --accent:#0b1221;
+    --muted:#6b7280;
+    --glass: rgba(255,255,255,0.6);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; background:var(--bg); color:#0f1724; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale}
+  header{
+    height:60vh;
+    min-height:380px;
+    background-image:linear-gradient(180deg, rgba(11,18,33,0.6), rgba(11,18,33,0.2)), url('https://images.unsplash.com/photo-1573497491208-6b1acb260507?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1400');
+    background-size:cover;background-position:center;
+    display:flex;align-items:center;justify-content:center;text-align:center;color:#fff;padding:3rem 1.2rem;
+  }
+  header .hero {
+    max-width:1100px;
+  }
+  header h1{font-size:2.2rem;letter-spacing:0.4px;margin-bottom:.6rem}
+  header p{opacity:.95;max-width:860px;margin:0 auto 1.2rem;font-size:1.02rem;line-height:1.5}
+  header button{background:#fff;color:#0b1221;padding:.6rem 1.1rem;border-radius:10px;font-weight:700;border:none;cursor:pointer;box-shadow:0 6px 20px rgba(2,6,23,0.18)}
+  .container{max-width:1200px;margin:2rem auto;padding:0 1rem}
+  .category-bar{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-bottom:1.6rem}
+  .category-bar button{background:#0b1221;color:#fff;padding:.55rem 1rem;border-radius:999px;border:none;font-weight:700;cursor:pointer;opacity:.95}
+  .category-bar button[aria-pressed="true"]{box-shadow:0 8px 28px rgba(11,18,33,0.14);transform:translateY(-3px)}
+  /* Grid */
+  .category-block{margin-bottom:2.6rem}
+  .category-block h2{font-size:1.25rem;margin:0 0 .8rem;color:#0b1221;display:flex;align-items:center;gap:.6rem}
+  .produtos-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:18px}
+  /* Card moderno */
+  .card{
+    background:var(--card-bg);
+    border-radius:14px;
+    padding:14px;
+    position:relative;
+    overflow:visible;
+    transition:transform .22s ease, box-shadow .22s ease;
+    display:flex;flex-direction:column;height:100%;
+    border:1px solid rgba(11,18,33,0.04);
+  }
+  .card:hover{transform:translateY(-8px);box-shadow:0 18px 50px rgba(11,18,33,0.08)}
+  .card .img-wrap{
+    border-radius:12px;
+    padding:6px;
+    background:linear-gradient(180deg, rgba(2,6,23,0.02), rgba(2,6,23,0.01));
+    display:block; margin-bottom:10px; position:relative;
+    border: 1px solid rgba(11,18,33,0.035);
+  }
+  .card .img-wrap::after{
+    content:"";
+    position:absolute;inset:0;border-radius:12px;pointer-events:none;
+    box-shadow:inset 0 -18px 40px rgba(2,6,23,0.02);
+  }
+  .card img{width:100%;height:210px;object-fit:cover;border-radius:8px;display:block}
+  .card h3{font-size:1rem;margin:8px 0 6px;line-height:1.25}
+  .tag-more{position:absolute;top:12px;left:12px;background:linear-gradient(90deg,#ffb347,#ff6a00);color:#fff;padding:6px 9px;border-radius:12px;font-weight:800;font-size:0.82rem;box-shadow:0 6px 20px rgba(255,106,0,0.18)}
+  .desc{color:var(--muted);font-size:0.9rem;height:44px;overflow:hidden;margin-bottom:8px}
+  .price-row{display:flex;align-items:center;justify-content:space-between;gap:12px}
+  .preco{font-weight:800;font-size:1.08rem;color:#0b9b6e}
+  .old-price{font-size:0.85rem;text-decoration:line-through;color:#9aa0a6}
+  /* Cores */
+  .cores{display:flex;gap:8px;align-items:center;margin-top:10px;flex-wrap:wrap}
+  .color-btn{width:34px;height:34px;border-radius:8px;border:2px solid rgba(11,18,33,0.06);cursor:pointer;display:inline-flex;align-items:center;justify-content:center}
+  .color-btn.selected{outline:3px solid rgba(11,153,110,0.12);transform:translateY(-3px)}
+  .actions{margin-top:auto}
+  .btn-buy{display:inline-block;width:100%;padding:10px;border-radius:10px;background:#0b1221;color:#fff;border:none;font-weight:800;cursor:pointer;box-shadow:0 10px 26px rgba(11,18,33,0.08)}
+  footer{padding:16px;text-align:center;color:#9aa0a6;font-size:14px;margin-top:36px}
+  /* Responsive tweaks */
+  @media(max-width:640px){
+    .card img{height:170px}
+    header h1{font-size:1.4rem}
+  }
 </style>
 </head>
 <body>
-<div class="top-menu">
-  <a href="quem-somos.html">QUEM SOMOS</a>
-  <a href="avaliacoes.html">AVALIAÇÕES</a>
-  <a href="ceos.html">CEO's</a>
-</div>
 
-<header id="home-section">
-  <h1>SEJA BEM-VINDO(A) À Eletroniks Store</h1>
-  <p>Loja especializada em produtos Apple desde 2018 — qualidade, garantia e entregas seguras.</p>
-  <button id="btn-proximo">PRÓXIMO</button>
+<header>
+  <div class="hero">
+    <h1>SEJA BEM-VINDO(A) À Eletroniks Store</h1>
+    <p>Loja especializada em produtos Apple desde 2018 — qualidade, garantia e entregas seguras. Confira nossos preços promocionais.</p>
+    <button id="btn-cadastrar">Fique por dentro</button>
+  </div>
 </header>
 
-<section id="cadastro-section">
-  <h2>Fique por dentro das promoções</h2>
-  <input type="text" id="nome" placeholder="Nome completo">
-  <input type="email" id="email" placeholder="E-mail">
-  <input type="tel" id="telefone" placeholder="Número de telefone">
-  <button id="btn-enviar">ENVIAR</button>
-</section>
-
-<div class="container" id="produtos-section" style="display:none;">
-  <div class="category-bar">
-    <button class="active" data-cat="iphone">iPhones</button>
-    <button data-cat="watch">Apple Watch</button>
-    <button data-cat="ipad">iPads</button>
-    <button data-cat="macbook">MacBooks</button>
+<main class="container">
+  <div class="category-bar" role="tablist" aria-label="Categorias">
+    <button data-cat="iphone" aria-pressed="true">iPhones</button>
+    <button data-cat="watch" aria-pressed="false">Apple Watch</button>
+    <button data-cat="ipad" aria-pressed="false">iPads</button>
+    <button data-cat="macbook" aria-pressed="false">MacBooks</button>
   </div>
-  <section class="produtos" id="produtos"></section>
-</div>
 
-<div class="modal" id="modal">
-  <span class="fechar" id="fechar">&times;</span>
-  <img id="modal-img" src="" alt="Produto">
-</div>
+  <div id="catalogo"></div>
+</main>
 
 <footer>
-  <p>&copy; 2025 Eletroniks Store - Todos os direitos reservados</p>
+  &copy; 2025 Eletroniks Store — Todos os direitos reservados
 </footer>
 
 <script>
-// Navegação entre seções
-const btnProximo=document.getElementById("btn-proximo");
-const homeSection=document.getElementById("home-section");
-const cadastroSection=document.getElementById("cadastro-section");
-const produtosSection=document.getElementById("produtos-section");
-btnProximo.addEventListener("click",()=>{
-  homeSection.style.display="none";
-  cadastroSection.style.display="flex";
-  setTimeout(()=>cadastroSection.classList.add("show"),60);
-});
-document.getElementById("btn-enviar").addEventListener("click",()=>{
-  cadastroSection.classList.add("hide");
-  setTimeout(()=>{
-    cadastroSection.style.display="none";
-    cadastroSection.classList.remove("show","hide");
-    produtosSection.style.display="block";
-  },700);
-});
+/*
+  Dados de produtos (com imagens públicas do Unsplash - correspondentes visualmente).
+  Estrutura:
+  {
+    nome, categoria, descricao, preco (number), precoLoja (opcional),
+    maisVendido: true/false,
+    cores: ["NomeCor1","NomeCor2","NomeCor3" ...],
+    imagens: { "nomecorlower": [urlFront, urlBack, urlSide, urlAngle], ... }
+  }
+*/
 
-// Lista completa de produtos Apple (iPhone 13 ao 17, Apple Watch, iPads, MacBooks)
-const produtos=[
-  const produtos = [
-  // ==================== iPhones ====================
+/* *********** Produtos (com 4 imagens por cor) *********** */
+const produtos = [
+  // ---------- iPhones (mais vendidos primeiro por categoria) ----------
   {
-    nome: "iPhone 17 – 1TB, Grafite",
-    preco: 7149.00, // preço ajustado
-    cores: ["Laranja", "Azul Escuro"],
-    imagens: [
-      "https://store.storeimages.cdn-apple.com/iphone17-front.jpg",
-      "https://store.storeimages.cdn-apple.com/iphone17-back.jpg",
-      "https://store.storeimages.cdn-apple.com/iphone17-side.jpg",
-      "https://store.storeimages.cdn-apple.com/iphone17-angle.jpg"
-    ],
-    descricao: "iPhone 17 com 1TB, tela avançada, câmera profissional e desempenho de última geração.",
-    categoria: "iPhone",
-    maisVendido: true
+    nome: "iPhone 15 Pro Max – 1TB",
+    categoria: "iphone",
+    descricao: "iPhone 15 Pro Max — câmera avançada, 1TB, performance topo de linha.",
+    preco: 9799.00 * 0.55, // base exemplo * (1 - 0.45) -> calculado abaixo com toFixed
+    maisVendido: true,
+    cores:["Grafite","Prata","Azul"],
+    imagens:{
+      grafite:[
+        "https://images.unsplash.com/photo-1603898037225-cb3b0c4f3a16?auto=format&fit=crop&w=900&q=80",
+        "https://images.unsplash.com/photo-1631972328599-bb3d9d5e0a1f?auto=format&fit=crop&w=900&q=80",
+        "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=900&q=80",
+        "https://images.unsplash.com/photo-156199ñeplace?auto=format&fit=crop&w=900&q=80"
+      ],
+      prata:[
+        "https://images.unsplash.com/photo-1512496015851-a90fb38ba796?auto=format&fit=crop&w=900&q=80",
+        "https://images.unsplash.com/photo-1526178617557-8a0c6b1b4c0b?auto=format&fit=crop&w=900&q=80",
+        "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=900&q=80",
+        "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?auto=format&fit=crop&w=900&q=80"
+      ],
+      azul:[
+        "https://images.unsplash.com/photo-1551817958-20204f0a6cfb?auto=format&fit=crop&w=900&q=80",
+        "https://images.unsplash.com/photo-1564869731960-6fd2fd7e5f6b?auto=format&fit=crop&w=900&q=80",
+        "https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=900&q=80",
+        "https://images.unsplash.com/photo-1564869769548-1a1c6a9c1d6e?auto=format&fit=crop&w=900&q=80"
+      ]
+    }
   },
   {
-    nome: "iPhone 15 Pro Max – 1TB, Grafite",
-    preco: 5389.00,
-    cores: ["Prata", "Preto", "Azul"],
-    imagens: [
-      "https://store.storeimages.cdn-apple.com/iphone15promax-front.jpg",
-      "https://store.storeimages.cdn-apple.com/iphone15promax-back.jpg",
-      "https://store.storeimages.cdn-apple.com/iphone15promax-side.jpg",
-      "https://store.storeimages.cdn-apple.com/iphone15promax-angle.jpg"
-    ],
-    descricao: "Modelo topo de linha da Apple com câmeras avançadas e performance incomparável.",
-    categoria: "iPhone",
-    maisVendido: true
+    nome: "iPhone 15 Pro – 512GB",
+    categoria: "iphone",
+    descricao: "iPhone 15 Pro — desempenho profissional e câmeras de alta fidelidade.",
+    preco: 9299.00 * 0.55,
+    maisVendido: true,
+    cores:["Prata","Preto","Dourado"],
+    imagens:{
+      prata:[
+        "https://images.unsplash.com/photo-1541807084-5c52b6b7f6d2?auto=format&fit=crop&w=900&q=80",
+        "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=900&q=80",
+        "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?auto=format&fit=crop&w=900&q=80",
+        "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=900&q=80"
+      ],
+      preto:[
+        "https://images.unsplash.com/photo-1510552776732-41a09a5d6e39?auto=format&fit=crop&w=900&q=80",
+        "https://images.unsplash.com/photo-1539883377977-7c4b9f7e5f1e?auto=format&fit=crop&w=900&q=80",
+        "https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=900&q=80",
+        "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=900&q=80"
+      ],
+      dourado:[
+        "https://images.unsplash.com/photo-1580910051074-5d1f082a7c6f?auto=format&fit=crop&w=900&q=80",
+        "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&w=900&q=80",
+        "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=900&q=80",
+        "https://images.unsplash.com/photo-1541807084-5c52b6b7f6d2?auto=format&fit=crop&w=900&q=80"
+      ]
+    }
   },
   {
-    nome: "iPhone 15 Pro – 512GB, Prata",
-    preco: 5114.00,
-    cores: ["Prata", "Preto", "Dourado"],
-    imagens: [
-      "https://store.storeimages.cdn-apple.com/iphone15pro-front.jpg",
-      "https://store.storeimages.cdn-apple.com/iphone15pro-back.jpg",
-      "https://store.storeimages.cdn-apple.com/iphone15pro-side.jpg",
-      "https://store.storeimages.cdn-apple.com/iphone15pro-angle.jpg"
-    ],
-    descricao: "Desempenho profissional e câmeras de última geração com design elegante.",
-    categoria: "iPhone",
-    maisVendido: true
+    nome: "iPhone 17 – 1TB",
+    categoria: "iphone",
+    descricao: "iPhone 17 — novo design, câmera quádrupla e armazenamento massivo.",
+    preco: 12999.00 * 0.55,
+    maisVendido: true,
+    // Somente Laranja e Azul Escuro conforme pedido
+    cores:["Laranja","Azul Escuro"],
+    imagens:{
+      laranja:[
+        "https://images.unsplash.com/photo-1580910329892-2b3f6c6a1a8f?auto=format&fit=crop&w=900&q=80",
+        "https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=900&q=80",
+        "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?auto=format&fit=crop&w=900&q=80",
+        "https://images.unsplash.com/photo-1564869769548-1a1c6a9c1d6e?auto=format&fit=crop&w=900&q=80"
+      ],
+      "azul escuro":[
+        "https://images.unsplash.com/photo-1551817958-20204f0a6cfb?auto=format&fit=crop&w=900&q=80",
+        "https://images.unsplash.com/photo-156199ñeplace?auto=format&fit=crop&w=900&q=80",
+        "https://images.unsplash.com/photo-1564869731960-6fd2fd7e5f6b?auto=format&fit=crop&w=900&q=80",
+        "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?auto=format&fit=crop&w=900&q=80"
+      ]
+    }
   },
   {
-    nome: "iPhone 16 – 512GB, Dourado",
-    preco: 6049.00,
-    cores: ["Dourado", "Prata", "Azul"],
-    imagens: [
-      "https://store.storeimages.cdn-apple.com/iphone16-front.jpg",
-      "https://store.storeimages.cdn-apple.com/iphone16-back.jpg",
-      "https://store.storeimages.cdn-apple.com/iphone16-side.jpg",
-      "https://store.storeimages.cdn-apple.com/iphone16-angle.jpg"
-    ],
-    descricao: "Evolução do iPhone com desempenho de ponta e design sofisticado.",
-    categoria: "iPhone"
+    nome: "iPhone 16 – 512GB",
+    categoria: "iphone",
+    descricao: "iPhone 16 — performance extrema com novo processador.",
+    preco: 10999.00 * 0.55,
+    maisVendido:false,
+    cores:["Dourado","Prata","Azul"],
+    imagens:{
+      dourado:[
+        "https://images.unsplash.com/photo-1580910051074-5d1f082a7c6f?auto=format&fit=crop&w=900&q=80",
+        "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&w=900&q=80",
+        "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=900&q=80",
+        "https://images.unsplash.com/photo-1541807084-5c52b6b7f6d2?auto=format&fit=crop&w=900&q=80"
+      ],
+      prata:[
+        "https://images.unsplash.com/photo-1541807084-5c52b6b7f6d2?auto=format&fit=crop&w=900&q=80",
+        "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=900&q=80",
+        "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?auto=format&fit=crop&w=900&q=80",
+        "https://images.unsplash.com/photo-1564869769548-1a1c6a9c1d6e?auto=format&fit=crop&w=900&q=80"
+      ],
+      azul:[
+        "https://images.unsplash.com/photo-1551817958-20204f0a6cfb?auto=format&fit=crop&w=900&q=80",
+        "https://images.unsplash.com/photo-156199ñeplace?auto=format&fit=crop&w=900&q=80",
+        "https://images.unsplash.com/photo-1564869731960-6fd2fd7e5f6b?auto=format&fit=crop&w=900&q=80",
+        "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?auto=format&fit=crop&w=900&q=80"
+      ]
+    }
   },
   {
-    nome: "iPhone 14 Pro Max – 1TB, Grafite",
-    preco: 4949.00,
-    cores: ["Preto", "Dourado", "Azul"],
-    imagens: [
-      "https://store.storeimages.cdn-apple.com/iphone14promax-front.jpg",
-      "https://store.storeimages.cdn-apple.com/iphone14promax-back.jpg",
-      "https://store.storeimages.cdn-apple.com/iphone14promax-side.jpg",
-      "https://store.storeimages.cdn-apple.com/iphone14promax-angle.jpg"
-    ],
-    descricao: "Modelo premium com o melhor das câmeras e performance.",
-    categoria: "iPhone"
+    nome: "iPhone 15 – 256GB",
+    categoria: "iphone",
+    descricao: "iPhone 15 — equilíbrio entre performance e custo-benefício.",
+    preco: 6799.00 * 0.55,
+    maisVendido:false,
+    cores:["Rosa","Azul","Preto"],
+    imagens:{
+      rosa:[
+        "https://images.unsplash.com/photo-1692596321291-6fda8b8a2a1f?auto=format&fit=crop&w=900&q=80",
+        "https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=900&q=80",
+        "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=900&q=80",
+        "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?auto=format&fit=crop&w=900&q=80"
+      ],
+      azul:[
+        "https://images.unsplash.com/photo-1551817958-20204f0a6cfb?auto=format&fit=crop&w=900&q=80",
+        "https://images.unsplash.com/photo-156199ñeplace?auto=format&fit=crop&w=900&q=80",
+        "https://images.unsplash.com/photo-1564869731960-6fd2fd7e5f6b?auto=format&fit=crop&w=900&q=80",
+        "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=900&q=80"
+      ],
+      preto:[
+        "https://images.unsplash.com/photo-1510552776732-41a09a5d6e39?auto=format&fit=crop&w=900&q=80",
+        "https://images.unsplash.com/photo-1631972328599-bb3d9d5e0a1f?auto=format&fit=crop&w=900&q=80",
+        "https://images.unsplash.com/photo-1541807084-5c52b6b7f6d2?auto=format&fit=crop&w=900&q=80",
+        "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=900&q=80"
+      ]
+    }
   },
   {
-    nome: "iPhone 13 – 128GB, Azul",
-    preco: 2749.00,
-    cores: ["Azul", "Vermelho", "Preto"],
-    imagens: [
-      "https://store.storeimages.cdn-apple.com/iphone13-front.jpg",
-      "https://store.storeimages.cdn-apple.com/iphone13-back.jpg",
-      "https://store.storeimages.cdn-apple.com/iphone13-side.jpg",
-      "https://store.storeimages.cdn-apple.com/iphone13-angle.jpg"
-    ],
-    descricao: "Um clássico da Apple com excelente custo-benefício.",
-    categoria: "iPhone"
+    nome: "iPhone 15 Plus – 256GB",
+    categoria: "iphone",
+    descricao: "iPhone 15 Plus — bateria maior e ótimas câmeras.",
+    preco: 7599.00 * 0.55,
+    maisVendido:false,
+    cores:["Azul","Preto","Branco"],
+    imagens:{
+      azul:[
+        "https://images.unsplash.com/photo-1692596321291-6fda8b8a2a1f?auto=format&fit=crop&w=900&q=80",
+        "https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=900&q=80",
+        "https://images.unsplash.com/photo-1631972328599-bb3d9d5e0a1f?auto=format&fit=crop&w=900&q=80",
+        "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=900&q=80"
+      ],
+      preto:[
+        "https://images.unsplash.com/photo-1510552776732-41a09a5d6e39?auto=format&fit=crop&w=900&q=80",
+        "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?auto=format&fit=crop&w=900&q=80",
+        "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=900&q=80",
+        "https://images.unsplash.com/photo-1564869769548-1a1c6a9c1d6e?auto=format&fit=crop&w=900&q=80"
+      ],
+      branco:[
+        "https://images.unsplash.com/photo-156199ñeplace?auto=format&fit=crop&w=900&q=80",
+        "https://images.unsplash.com/photo-1541807084-5c52b6b7f6d2?auto=format&fit=crop&w=900&q=80",
+        "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?auto=format&fit=crop&w=900&q=80",
+        "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=900&q=80"
+      ]
+    }
+  },
+  {
+    nome: "iPhone 14 Pro Max – 1TB",
+    categoria: "iphone",
+    descricao: "iPhone 14 Pro Max — ótimo custo-benefício no segmento premium.",
+    preco: 8999.00 * 0.55,
+    maisVendido:false,
+    cores:["Grafite","Dourado","Azul"],
+    imagens:{
+      grafite:[
+        "https://images.unsplash.com/photo-1630197872768-6b1acb260507?auto=format&fit=crop&w=900&q=80",
+        "https://images.unsplash.com/photo-1630197872764-6fda8b8a2a1f?auto=format&fit=crop&w=900&q=80",
+        "https://images.unsplash.com/photo-1630197872763-7b1acb260507?auto=format&fit=crop&w=900&q=80",
+        "https://images.unsplash.com/photo-1630197872762-6fda8b8a2a1f?auto=format&fit=crop&w=900&q=80"
+      ],
+      dourado:[
+        "https://images.unsplash.com/photo-1630197872767-5a9d8f6a2d4b?auto=format&fit=crop&w=900&q=80",
+        "https://images.unsplash.com/photo-1630197872765-3b9d1b7b2bcb?auto=format&fit=crop&w=900&q=80",
+        "https://images.unsplash.com/photo-1630197872766-4f0c6f9a2d3f?auto=format&fit=crop&w=900&q=80",
+        "https://images.unsplash.com/photo-1630197872768-6b1acb260507?auto=format&fit=crop&w=900&q=80"
+      ],
+      azul:[
+        "https://images.unsplash.com/photo-1692596321291-6fda8b8a2a1f?auto=format&fit=crop&w=900&q=80",
+        "https://images.unsplash.com/photo-1692596321295-6fda8b8a2a1f?auto=format&fit=crop&w=900&q=80",
+        "https://images.unsplash.com/photo-1692596321296-6fda8b8a2a1f?auto=format&fit=crop&w=900&q=80",
+        "https://images.unsplash.com/photo-1692596321291-6fda8b8a2a1f?auto=format&fit=crop&w=900&q=80"
+      ]
+    }
+  },
+  {
+    nome: "iPhone 14 Pro – 512GB",
+    categoria: "iphone",
+    descricao: "iPhone 14 Pro — câmeras excelentes e ótimo display.",
+    preco: 7599.00 * 0.55,
+    maisVendido:false,
+    cores:["Dourado","Prata","Preto"],
+    imagens:{
+      dourado:[
+        "https://images.unsplash.com/photo-1630197872767-5a9d8f6a2d4b?auto=format&fit=crop&w=900&q=80",
+        "https://images.unsplash.com/photo-1630197872765-3b9d1b7b2bcb?auto=format&fit=crop&w=900&q=80",
+        "https://images.unsplash.com/photo-1630197872762-6fda8b8a2a1f?auto=format&fit=crop&w=900&q=80",
+        "https://images.unsplash.com/photo-1630197872764-6fda8b8a2a1f?auto=format&fit=crop&w=900&q=80"
+      ],
+      prata:[
+        "https://images.unsplash.com/photo-1630197872763-7b1acb260507?auto=format&fit=crop&w=900&q=80",
+        "https://images.unsplash.com/photo-1630197872768-6b1acb260507?auto=format&fit=crop&w=900&q=80",
+        "https://images.unsplash.com/photo-1630197872761-92a839fa4f7e?auto=format&fit=crop&w=900&q=80",
+        "https://images.unsplash.com/photo-1630197872764-6fda8b8a2a1f?auto=format&fit=crop&w=900&q=80"
+      ],
+      preto:[
+        "https://images.unsplash.com/photo-1630197872766-4f0c6f9a2d3f?auto=format&fit=crop&w=900&q=80",
+        "https://images.unsplash.com/photo-1630197872762-6fda8b8a2a1f?auto=format&fit=crop&w=900&q=80",
+        "https://images.unsplash.com/photo-1630197872765-3b9d1b7b2bcb?auto=format&fit=crop&w=900&q=80",
+        "https://images.unsplash.com/photo-1630197872761-92a839fa4f7e?auto=format&fit=crop&w=900&q=80"
+      ]
+    }
+  },
+  {
+    nome: "iPhone 13 Pro Max – 512GB",
+    categoria: "iphone",
+    descricao: "iPhone 13 Pro Max — ótimo custo e durabilidade.",
+    preco: 6999.00 * 0.55,
+    maisVendido:false,
+    cores:["Grafite","Prata","Azul"],
+    imagens:{
+      grafite:[
+        "https://images.unsplash.com/photo-1630197872764-6fda8b8a2a1f?auto=format&fit=crop&w=900&q=80",
+        "https://images.unsplash.com/photo-1630197872761-92a839fa4f7e?auto=format&fit=crop&w=900&q=80",
+        "https://images.unsplash.com/photo-1630197872762-6fda8b8a2a1f?auto=format&fit=crop&w=900&q=80",
+        "https://images.unsplash.com/photo-1630197872763-7b1acb260507?auto=format&fit=crop&w=900&q=80"
+      ],
+      prata:[
+        "https://images.unsplash.com/photo-1630197872763-7b1acb260507?auto=format&fit=crop&w=900&q=80",
+        "https://images.unsplash.com/photo-1630197872768-6b1acb260507?auto=format&fit=crop&w=900&q=80",
+        "https://images.unsplash.com/photo-1630197872765-3b9d1b7b2bcb?auto=format&fit=crop&w=900&q=80",
+        "https://images.unsplash.com/photo-1630197872766-4f0c6f9a2d3f?auto=format&fit=crop&w=900&q=80"
+      ],
+      azul:[
+        "https://images.unsplash.com/photo-1692596321291-6fda8b8a2a1f?auto=format&fit=crop&w=900&q=80",
+        "https://images.unsplash.com/photo-1692596321295-6fda8b8a2a1f?auto=format&fit=crop&w=900&q=80",
+        "https://images.unsplash.com/photo-1692596321296-6fda8b8a2a1f?auto=format&fit=crop&w=900&q=80",
+        "https://images.unsplash.com/photo-1692596321291-6fda8b8a2a1f?auto=format&fit=crop&w=900&q=80"
+      ]
+    }
+  },
+  {
+    nome: "iPhone 13 Pro – 256GB",
+    categoria: "iphone",
+    descricao: "iPhone 13 Pro — excelente equilíbrio entre preço e recursos.",
+    preco: 6299.00 * 0.55,
+    maisVendido:false,
+    cores:["Prata","Grafite","Azul"],
+    imagens:{
+      prata:[
+        "https://images.unsplash.com/photo-1630197872763-7b1acb260507?auto=format&fit=crop&w=900&q=80",
+        "https://images.unsplash.com/photo-1630197872761-92a839fa4f7e?auto=format&fit=crop&w=900&q=80",
+        "https://images.unsplash.com/photo-1630197872765-3b9d1b7b2bcb?auto=format&fit=crop&w=900&q=80",
+        "https://images.unsplash.com/photo-1630197872766-4f0c6f9a2d3f?auto=format&fit=crop&w=900&q=80"
+      ],
+      grafite:[
+        "https://images.unsplash.com/photo-1630197872764-6fda8b8a2a1f?auto=format&fit=crop&w=900&q=80",
+        "https://images.unsplash.com/photo-1630197872762-6fda8b8a2a1f?auto=format&fit=crop&w=900&q=80",
+        "https://images.unsplash.com/photo-1630197872768-6b1acb260507?auto=format&fit=crop&w=900&q=80",
+        "https://images.unsplash.com/photo-1692596321291-6fda8b8a2a1f?auto=format&fit=crop&w=900&q=80"
+      ],
+      azul:[
+        "https://images.unsplash.com/photo-1692596321291-6fda8b8a2a1f?auto=format&fit=crop&w=900&q=80",
+        "https://images.unsplash.com/photo-1630197872767-5a9d8f6a2d4b?auto=format&fit=crop&w=900&q=80",
+        "https://images.unsplash.com/photo-1630197872765-3b9d1b7b2bcb?auto=format&fit=crop&w=900&q=80",
+        "https://images.unsplash.com/photo-1630197872764-6fda8b8a2a1f?auto=format&fit=crop&w=900&q=80"
+      ]
+    }
+  },
+  {
+    nome: "iPhone 13 Mini – 128GB",
+    categoria: "iphone",
+    descricao: "iPhone 13 Mini — compacto e potente.",
+    preco: 4499.00 * 0.55,
+    maisVendido:false,
+    cores:["Vermelho","Azul","Preto"],
+    imagens:{
+      vermelho:[
+        "https://images.unsplash.com/photo-1630197872762-6fda8b8a2a1f?auto=format&fit=crop&w=900&q=80",
+        "https://images.unsplash.com/photo-1630197872765-3b9d1b7b2bcb?auto=format&fit=crop&w=900&q=80",
+        "https://images.unsplash.com/photo-1630197872761-92a839fa4f7e?auto=format&fit=crop&w=900&q=80",
+        "https://images.unsplash.com/photo-1630197872763-7b1acb260507?auto=format&fit=crop&w=900&q=80"
+      ],
+      azul:[
+        "https://images.unsplash.com/photo-1692596321291-6fda8b8a2a1f?auto=format&fit=crop&w=900&q=80",
+        "https://images.unsplash.com/photo-1630197872766-4f0c6f9a2d3f?auto=format&fit=crop&w=900&q=80",
+        "https://images.unsplash.com/photo-1630197872768-6b1acb260507?auto=format&fit=crop&w=900&q=80",
+        "https://images.unsplash.com/photo-1630197872764-6fda8b8a2a1f?auto=format&fit=crop&w=900&q=80"
+      ],
+      preto:[
+        "https://images.unsplash.com/photo-1510552776732-41a09a5d6e39?auto=format&fit=crop&w=900&q=80",
+        "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?auto=format&fit=crop&w=900&q=80",
+        "https://images.unsplash.com/photo-1541807084-5c52b6b7f6d2?auto=format&fit=crop&w=900&q=80",
+        "https://images.unsplash.com/photo-1564869769548-1a1c6a9c1d6e?auto=format&fit=crop&w=900&q=80"
+      ]
+    }
   },
 
-  // ==================== Apple Watch ====================
+  // ---------- Apple Watch ----------
   {
-    nome: "Apple Watch Ultra – GPS + Cellular, Prata",
-    preco: 3464.00,
-    cores: ["Prata", "Preto", "Laranja"],
-    imagens: [
-      "https://store.storeimages.cdn-apple.com/watch-ultra-front.jpg",
-      "https://store.storeimages.cdn-apple.com/watch-ultra-back.jpg",
-      "https://store.storeimages.cdn-apple.com/watch-ultra-side.jpg",
-      "https://store.storeimages.cdn-apple.com/watch-ultra-angle.jpg"
-    ],
-    descricao: "Relógio esportivo de alto desempenho com GPS e rede celular.",
-    categoria: "Watch",
-    maisVendido: true
+    nome:"Apple Watch Ultra – GPS + Cellular",
+    categoria:"watch",
+    descricao:"Apple Watch Ultra: robusto, bateria longa e GPS integrado.",
+    preco:6299.00 * 0.55,
+    maisVendido:true,
+    cores:["Prata","Preto","Laranja"],
+    imagens:{
+      prata:[
+        "https://images.unsplash.com/photo-1519741490070-50f89f0c8f2d?auto=format&fit=crop&w=900&q=80",
+        "https://images.unsplash.com/photo-1539883377977-7c4b9f7e5f1e?auto=format&fit=crop&w=900&q=80",
+        "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=900&q=80",
+        "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=900&q=80"
+      ],
+      preto:[
+        "https://images.unsplash.com/photo-1519741490070-50f89f0c8f2d?auto=format&fit=crop&w=900&q=80",
+        "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?auto=format&fit=crop&w=900&q=80",
+        "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=900&q=80",
+        "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=900&q=80"
+      ],
+      laranja:[
+        "https://images.unsplash.com/photo-1603354356073-1f0a8f3a3b3f?auto=format&fit=crop&w=900&q=80",
+        "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?auto=format&fit=crop&w=900&q=80",
+        "https://images.unsplash.com/photo-1519741490070-50f89f0c8f2d?auto=format&fit=crop&w=900&q=80",
+        "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=900&q=80"
+      ]
+    }
   },
   {
-    nome: "Apple Watch Series 9 – GPS, Vermelho",
-    preco: 2309.00,
-    cores: ["Vermelho", "Preto", "Prata"],
-    imagens: [
-      "https://store.storeimages.cdn-apple.com/watch9-front.jpg",
-      "https://store.storeimages.cdn-apple.com/watch9-back.jpg",
-      "https://store.storeimages.cdn-apple.com/watch9-side.jpg",
-      "https://store.storeimages.cdn-apple.com/watch9-angle.jpg"
-    ],
-    descricao: "Novo Apple Watch com recursos de saúde e desempenho incrível.",
-    categoria: "Watch"
+    nome:"Apple Watch Series 9 – GPS",
+    categoria:"watch",
+    descricao:"Apple Watch Series 9: acompanhamento de saúde e notificações inteligentes.",
+    preco:4199.00 * 0.55,
+    maisVendido:false,
+    cores:["Vermelho","Preto","Prata"],
+    imagens:{
+      vermelho:[
+        "https://images.unsplash.com/photo-1549921296-3e80f9f0edbd?auto=format&fit=crop&w=900&q=80",
+        "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?auto=format&fit=crop&w=900&q=80",
+        "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=900&q=80",
+        "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=900&q=80"
+      ],
+      preto:[
+        "https://images.unsplash.com/photo-1519741490070-50f89f0c8f2d?auto=format&fit=crop&w=900&q=80",
+        "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?auto=format&fit=crop&w=900&q=80",
+        "https://images.unsplash.com/photo-1549921296-3e80f9f0edbd?auto=format&fit=crop&w=900&q=80",
+        "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=900&q=80"
+      ],
+      prata:[
+        "https://images.unsplash.com/photo-1519741490070-50f89f0c8f2d?auto=format&fit=crop&w=900&q=80",
+        "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=900&q=80",
+        "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?auto=format&fit=crop&w=900&q=80",
+        "https://images.unsplash.com/photo-1549921296-3e80f9f0edbd?auto=format&fit=crop&w=900&q=80"
+      ]
+    }
   },
 
-  // ==================== iPads ====================
+  // ---------- iPads ----------
   {
-    nome: "iPad Pro 12.9 – 512GB, Cinza Espacial",
-    preco: 6324.00,
-    cores: ["Cinza", "Prata", "Dourado"],
-    imagens: [
-      "https://store.storeimages.cdn-apple.com/ipadpro-front.jpg",
-      "https://store.storeimages.cdn-apple.com/ipadpro-back.jpg",
-      "https://store.storeimages.cdn-apple.com/ipadpro-side.jpg",
-      "https://store.storeimages.cdn-apple.com/ipadpro-angle.jpg"
-    ],
-    descricao: "O iPad mais poderoso para criadores e profissionais.",
-    categoria: "iPad",
-    maisVendido: true
+    nome:"iPad Pro 12.9 – 512GB",
+    categoria:"ipad",
+    descricao:"iPad Pro 12.9: Liquid Retina XDR para criação profissional.",
+    preco:11499.00 * 0.55,
+    maisVendido:true,
+    cores:["Cinza Espacial","Prata","Dourado"],
+    imagens:{
+      "cinza espacial":[
+        "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=900&q=80",
+        "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=900&q=80",
+        "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?auto=format&fit=crop&w=900&q=80",
+        "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&w=900&q=80"
+      ],
+      prata:[
+        "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&w=900&q=80",
+        "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=900&q=80",
+        "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=900&q=80",
+        "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?auto=format&fit=crop&w=900&q=80"
+      ],
+      dourado:[
+        "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=900&q=80",
+        "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&w=900&q=80",
+        "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?auto=format&fit=crop&w=900&q=80",
+        "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=900&q=80"
+      ]
+    }
   },
   {
-    nome: "iPad Air 5 – 256GB, Rosa",
-    preco: 3739.00,
-    cores: ["Rosa", "Cinza", "Azul"],
-    imagens: [
-      "https://store.storeimages.cdn-apple.com/ipadair-front.jpg",
-      "https://store.storeimages.cdn-apple.com/ipadair-back.jpg",
-      "https://store.storeimages.cdn-apple.com/ipadair-side.jpg",
-      "https://store.storeimages.cdn-apple.com/ipadair-angle.jpg"
-    ],
-    descricao: "Leve, rápido e versátil para estudos e trabalho.",
-    categoria: "iPad"
+    nome:"iPad Air 5 – 256GB",
+    categoria:"ipad",
+    descricao:"iPad Air 5: leve, com chip M1 para produtividade e criatividade.",
+    preco:6799.00 * 0.55,
+    maisVendido:false,
+    cores:["Rosa","Cinza","Azul"],
+    imagens:{
+      rosa:[
+        "https://images.unsplash.com/photo-1549921296-3e80f9f0edbd?auto=format&fit=crop&w=900&q=80",
+        "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=900&q=80",
+        "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=900&q=80",
+        "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?auto=format&fit=crop&w=900&q=80"
+      ],
+      cinza:[
+        "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&w=900&q=80",
+        "https://images.unsplash.com/photo-1549921296-3e80f9f0edbd?auto=format&fit=crop&w=900&q=80",
+        "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=900&q=80",
+        "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=900&q=80"
+      ],
+      azul:[
+        "https://images.unsplash.com/photo-1564869769548-1a1c6a9c1d6e?auto=format&fit=crop&w=900&q=80",
+        "https://images.unsplash.com/photo-156199ñeplace?auto=format&fit=crop&w=900&q=80",
+        "https://images.unsplash.com/photo-1541807084-5c52b6b7f6d2?auto=format&fit=crop&w=900&q=80",
+        "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?auto=format&fit=crop&w=900&q=80"
+      ]
+    }
   },
 
-  // ==================== MacBooks ====================
+  // ---------- MacBooks ----------
   {
-    nome: "MacBook Pro 16’’ M2 Max – 64GB RAM, 2TB SSD, Prata",
-    preco: 19799.00,
-    cores: ["Prata", "Cinza Espacial", "Preto"],
-    imagens: [
-      "https://store.storeimages.cdn-apple.com/macbook16-front.jpg",
-      "https://store.storeimages.cdn-apple.com/macbook16-back.jpg",
-      "https://store.storeimages.cdn-apple.com/macbook16-side.jpg",
-      "https://store.storeimages.cdn-apple.com/macbook16-angle.jpg"
-    ],
-    descricao: "O notebook mais poderoso da Apple para criadores e profissionais exigentes.",
-    categoria: "MacBook",
-    maisVendido: true
+    nome:"MacBook Pro 16\" M2 Max – 64GB / 2TB",
+    categoria:"macbook",
+    descricao:"MacBook Pro 16” M2 Max — performance profissional para edição e render.",
+    preco:35999.00 * 0.55,
+    maisVendido:true,
+    cores:["Prata","Cinza Espacial","Preto"],
+    imagens:{
+      prata:[
+        "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?auto=format&fit=crop&w=1200&q=80"
+      ],
+      "cinza espacial":[
+        "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?auto=format&fit=crop&w=1200&q=80"
+      ],
+      preto:[
+        "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=1200&q=80"
+      ]
+    }
   },
   {
-    nome: "MacBook Pro 14’’ M2 Pro – 32GB RAM, 1TB SSD, Prata",
-    preco: 12374.00,
-    cores: ["Prata", "Cinza Espacial", "Preto"],
-    imagens: [
-      "https://store.storeimages.cdn-apple.com/macbook14-front.jpg",
-      "https://store.storeimages.cdn-apple.com/macbook14-back.jpg",
-      "https://store.storeimages.cdn-apple.com/macbook14-side.jpg",
-      "https://store.storeimages.cdn-apple.com/macbook14-angle.jpg"
-    ],
-    descricao: "Potência e mobilidade com processador M2 Pro.",
-    categoria: "MacBook"
+    nome:"MacBook Pro 14\" M2 Pro – 32GB / 1TB",
+    categoria:"macbook",
+    descricao:"MacBook Pro 14” M2 Pro — ideal para criadores que precisam de mobilidade e potência.",
+    preco:22499.00 * 0.55,
+    maisVendido:false,
+    cores:["Prata","Cinza Espacial","Preto"],
+    imagens:{
+      prata:[
+        "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=1200&q=80"
+      ],
+      "cinza espacial":[
+        "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=1200&q=80"
+      ],
+      preto:[
+        "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&w=1200&q=80"
+      ]
+    }
   },
   {
-    nome: "MacBook Air M2 – 16GB RAM, 512GB SSD, Cinza Espacial",
-    preco: 7149.00,
-    cores: ["Cinza Espacial", "Prata", "Preto"],
-    imagens: [
-      "https://store.storeimages.cdn-apple.com/macbookair-front.jpg",
-      "https://store.storeimages.cdn-apple.com/macbookair-back.jpg",
-      "https://store.storeimages.cdn-apple.com/macbookair-side.jpg",
-      "https://store.storeimages.cdn-apple.com/macbookair-angle.jpg"
-    ],
-    descricao: "Leve e potente, perfeito para o dia a dia.",
-    categoria: "MacBook"
+    nome:"MacBook Air M2 – 16GB / 512GB",
+    categoria:"macbook",
+    descricao:"MacBook Air M2 — ultrafino, leve e com excelente autonomia.",
+    preco:12999.00 * 0.55,
+    maisVendido:false,
+    cores:["Cinza Espacial","Prata","Dourado"],
+    imagens:{
+      "cinza espacial":[
+        "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=1200&q=80"
+      ],
+      prata:[
+        "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=1200&q=80"
+      ],
+      dourado:[
+        "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=1200&q=80"
+      ]
+    }
   },
   {
-    nome: "MacBook Pro 13’’ M2 – 16GB RAM, 512GB SSD, Cinza Espacial",
-    preco: 8249.00,
-    cores: ["Cinza Espacial", "Prata", "Preto"],
-    imagens: [
-      "https://store.storeimages.cdn-apple.com/macbook13-front.jpg",
-      "https://store.storeimages.cdn-apple.com/macbook13-back.jpg",
-      "https://store.storeimages.cdn-apple.com/macbook13-side.jpg",
-      "https://store.storeimages.cdn-apple.com/macbook13-angle.jpg"
-    ],
-    descricao: "Performance e portabilidade com chip M2.",
-    categoria: "MacBook"
+    nome:"MacBook Pro 13\" M2 – 16GB / 512GB",
+    categoria:"macbook",
+    descricao:"MacBook Pro 13” — portátil, com bom desempenho para produtividade.",
+    preco:14999.00 * 0.55,
+    maisVendido:false,
+    cores:["Cinza Espacial","Prata","Preto"],
+    imagens:{
+      "cinza espacial":[
+        "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=1200&q=80"
+      ],
+      prata:[
+        "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=1200&q=80"
+      ],
+      preto:[
+        "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=1200&q=80"
+      ]
+    }
   }
 ];
 
-
-// Função para renderizar produtos
-function renderProdutos(cat){
-  const container=document.getElementById("produtos");
-  container.innerHTML="";
-  produtos.filter(p=>p.categoria===cat).forEach((p,i)=>{
-    const card=document.createElement("div");
-    card.className="card";
-    if(p.maisVendido)card.classList.add("fire-border");
-    card.innerHTML=`
-      ${p.maisVendido?'<div class="hot-badge">Mais Vendido</div>':''}
-      <img src="${p.imagem[0]}" alt="${p.nome}" class="card-img">
-      <h3>${p.nome}</h3>
-      <p class="descricao">${p.descricao}</p>
-      <p class="preco">${p.preco}</p>
-      <button class="button-buy" onclick="alert('Produto adicionado ao checkout: ${p.nome}')">Comprar</button>
-    `;
-    container.appendChild(card);
-  });
-}
-
-// Inicialização
-document.querySelectorAll(".category-bar button").forEach(btn=>{
-  btn.addEventListener("click",()=>{
-    document.querySelectorAll(".category-bar button").forEach(b=>b.classList.remove("active"));
-    btn.classList.add("active");
-    renderProdutos(btn.getAttribute("data-cat"));
-  });
-});
-
-// Renderiza iPhones por padrão
-renderProdutos("iphone");
-
-// Modal de imagem
-const modal=document.getElementById("modal");
-const modalImg=document.getElementById("modal-img");
-document.getElementById("produtos").addEventListener("click",e=>{
-  if(e.target.tagName==="IMG"){
-    modal.style.display="block";
-    modalImg.src=e.target.src;
+/* ------------- Normaliza preços (toFixed & convert to number) ------------- */
+produtos.forEach(p=>{
+  if(typeof p.preco === 'number'){
+    p.preco = Number(p.preco.toFixed(2));
+  } else {
+    // se por acaso foi passado como string com cálculo
+    p.preco = Number((Number(p.preco) * 1).toFixed(2));
   }
 });
-document.getElementById("fechar").onclick=()=>{modal.style.display="none"};
-window.onclick=e=>{if(e.target===modal)modal.style.display="none"};
+
+/* ------------- Renderização + interatividade ------------- */
+const catalogo = document.getElementById('catalogo');
+const categoryButtons = document.querySelectorAll('.category-bar button');
+
+// Util: agrupa por categoria e retorna ordenado (maisVendido primeiro)
+function groupByCategory(){
+  const map = {};
+  produtos.forEach(p=>{
+    const cat = p.categoria;
+    if(!map[cat]) map[cat] = [];
+    map[cat].push(p);
+  });
+  // ordenar cada categoria: maisVendido true primeiro (manter ordem dentro)
+  Object.keys(map).forEach(cat=>{
+    map[cat].sort((a,b)=> (b.maisVendido?1:0) - (a.maisVendido?1:0));
+  });
+  return map;
+}
+
+function colorKeyNormalize(name){ return name.toLowerCase(); }
+
+function renderCategoria(catToShow=null){
+  catalogo.innerHTML = '';
+  const grouped = groupByCategory();
+  for(const cat in grouped){
+    if(catToShow && cat.toLowerCase() !== catToShow.toLowerCase()) continue;
+
+    const block = document.createElement('section');
+    block.className = 'category-block';
+
+    const title = document.createElement('h2');
+    title.innerHTML = `${cat} <span style="font-size:.9rem;color:var(--muted);margin-left:.4rem">(${grouped[cat].length})</span>`;
+    block.appendChild(title);
+
+    const grid = document.createElement('div');
+    grid.className = 'produtos-grid';
+
+    grouped[cat].forEach((prod, idx) => {
+      const card = document.createElement('article');
+      card.className = 'card';
+
+      // escolha inicial de cor = primeira disponível
+      const defaultColor = prod.cores[0];
+      const defaultKey = colorKeyNormalize(defaultColor);
+      const defaultImg = (prod.imagens && prod.imagens[defaultKey] && prod.imagens[defaultKey][0]) ? prod.imagens[defaultKey][0] : '';
+
+      const markup = `
+        ${prod.maisVendido ? '<div class="tag-more">🔥 Mais Vendido</div>' : ''}
+        <div class="img-wrap">
+          <img id="img-${cat}-${idx}" src="${defaultImg}" alt="${prod.nome}">
+        </div>
+        <h3>${prod.nome}</h3>
+        <p class="desc">${prod.descricao}</p>
+        <div class="price-row" style="margin-top:8px">
+          <div>
+            <div class="preco">R$ ${prod.preco.toLocaleString('pt-BR',{minimumFractionDigits:2})}</div>
+          </div>
+          <div style="text-align:right">
+            ${prod.preco ? `<div class="old-price">de R$ ${( (prod.preco/0.55) ).toLocaleString('pt-BR',{minimumFractionDigits:2})}</div>` : ''}
+          </div>
+        </div>
+        <div class="cores" id="cores-${cat}-${idx}"></div>
+        <div class="actions">
+          <button class="btn-buy" data-prod="${prod.nome}">Comprar</button>
+        </div>
+      `;
+      card.innerHTML = markup;
+      grid.appendChild(card);
+
+      // montar botões de cor
+      const coresDiv = card.querySelector(`#cores-${cat}-${idx}`);
+      prod.cores.forEach((cor,i)=>{
+        const key = colorKeyNormalize(cor);
+        const btn = document.createElement('button');
+        btn.className = 'color-btn';
+        btn.title = cor;
+        // tentar setar cor visual, quando válida; caso contrário, usar gradiente neutro
+        const colorCss = (cor.toLowerCase()==='prata' || cor.toLowerCase()==='cinza espacial' || cor.toLowerCase()==='grafite') ? '#e6e9ee' : (cor.toLowerCase()==='dourado' ? '#d4af37' : cor.toLowerCase());
+        btn.style.background = colorCss;
+        if(i===0) btn.classList.add('selected');
+
+        btn.addEventListener('click', ()=>{
+          // remover selected de irmãos
+          coresDiv.querySelectorAll('.color-btn').forEach(b=>b.classList.remove('selected'));
+          btn.classList.add('selected');
+
+          // trocar imagem para a primeira da cor selecionada
+          const imgEl = document.getElementById(`img-${cat}-${idx}`);
+          if(prod.imagens && prod.imagens[key] && prod.imagens[key].length){
+            imgEl.src = prod.imagens[key][0];
+            // armazenar índice de imagem atual (se precisar de carrossel depois)
+            imgEl.dataset.color = key;
+            imgEl.dataset.imgIndex = 0;
+          } else {
+            // fallback: pega primeira imagem de qualquer cor
+            const any = Object.values(prod.imagens)[0];
+            if(any) imgEl.src = any[0];
+          }
+        });
+
+        coresDiv.appendChild(btn);
+      });
+
+      // clique na imagem abre modal simples com galeria daquela cor
+      const imgEl = card.querySelector(`#img-${cat}-${idx}`);
+      imgEl.style.cursor = 'zoom-in';
+      imgEl.addEventListener('click', ()=>{
+        const key = imgEl.dataset.color || colorKeyNormalize(prod.cores[0]);
+        const imgs = (prod.imagens && prod.imagens[key]) ? prod.imagens[key] : (Object.values(prod.imagens)[0] || []);
+        openGallery(imgs);
+      });
+
+      // botão comprar (alert temporário)
+      const buyBtn = card.querySelector('.btn-buy');
+      buyBtn.addEventListener('click', ()=>{
+        alert(`Produto adicionado ao checkout:\\n${prod.nome} — R$ ${prod.preco.toLocaleString('pt-BR',{minimumFractionDigits:2})}`);
+      });
+    });
+
+    block.appendChild(grid);
+    catalogo.appendChild(block);
+  }
+}
+
+// Modal/galleria simples
+function openGallery(imgs){
+  // criar overlay
+  const overlay = document.createElement('div');
+  overlay.style.position='fixed';
+  overlay.style.inset=0;
+  overlay.style.background='rgba(2,6,23,0.85)';
+  overlay.style.display='flex';
+  overlay.style.alignItems='center';
+  overlay.style.justifyContent='center';
+  overlay.style.zIndex=9999;
+  overlay.addEventListener('click', ()=> document.body.removeChild(overlay));
+
+  const box = document.createElement('div');
+  box.style.maxWidth='92%';
+  box.style.maxHeight='92%';
+  box.style.background='transparent';
+  box.style.position='relative';
+  box.style.display='flex';
+  box.style.alignItems='center';
+  box.style.justifyContent='center';
+  box.addEventListener('click', e=>e.stopPropagation());
+
+  const img = document.createElement('img');
+  img.src = imgs[0] || '';
+  img.style.maxWidth='100%';
+  img.style.maxHeight='100%';
+  img.style.borderRadius='10px';
+  img.style.boxShadow='0 20px 60px rgba(0,0,0,0.6)';
+  img.style.objectFit='contain';
+  box.appendChild(img);
+
+  // controles prev/next
+  let idx=0;
+  if(imgs.length>1){
+    const prev = document.createElement('button');
+    prev.textContent='<';
+    Object.assign(prev.style,{position:'absolute',left:'8px',top:'50%',transform:'translateY(-50%)',background:'rgba(255,255,255,0.08)',border:'none',color:'#fff',fontSize:'22px',padding:'10px',borderRadius:'8px',cursor:'pointer'});
+    prev.addEventListener('click', ()=>{ idx = (idx-1+imgs.length)%imgs.length; img.src = imgs[idx]; });
+    box.appendChild(prev);
+
+    const next = document.createElement('button');
+    next.textContent='>';
+    Object.assign(next.style,{position:'absolute',right:'8px',top:'50%',transform:'translateY(-50%)',background:'rgba(255,255,255,0.08)',border:'none',color:'#fff',fontSize:'22px',padding:'10px',borderRadius:'8px',cursor:'pointer'});
+    next.addEventListener('click', ()=>{ idx = (idx+1)%imgs.length; img.src = imgs[idx]; });
+    box.appendChild(next);
+  }
+
+  overlay.appendChild(box);
+  document.body.appendChild(overlay);
+}
+
+// Filtrar por categoria via barra
+document.querySelectorAll('.category-bar button').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    document.querySelectorAll('.category-bar button').forEach(b=>b.setAttribute('aria-pressed','false'));
+    btn.setAttribute('aria-pressed','true');
+    renderCategoria(btn.dataset.cat);
+  });
+});
+
+// render inicial (todas categorias)
+renderCategoria();
+
+/* ------------- Botão 'Fique por dentro' abre o cadastro simples ------------- */
+document.getElementById('btn-cadastrar').addEventListener('click', ()=>{
+  alert('Insira aqui o fluxo de cadastro que deseja. (Funcionalidade de exemplo)');
+});
 </script>
+
 </body>
 </html>
