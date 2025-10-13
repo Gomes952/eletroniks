@@ -17,21 +17,23 @@ main { padding-top:80px; max-width:1200px; margin:0 auto; }
 .hero h2 { font-size:36px; margin-bottom:10px; }
 .hero p { color:#98a0ad; margin-bottom:20px; }
 .btn { padding:10px 20px; border-radius:50px; border:none; cursor:pointer; font-weight:bold; transition:0.3s; }
-.btn-primary { background:linear-gradient(90deg,#1f6feb,#4b8cff); color:#fff; }
+.btn-primary { background:linear-gradient(90deg,#1f6feb,#4b8cff); color:#fff; box-shadow: 0 0 10px #1f6feb; }
 .btn-primary:hover { opacity:0.9; transform:scale(1.05); }
-.btn-ghost { background:transparent; border:2px solid #fff; color:#fff; }
-.btn-ghost:hover { background:#d4af37; color:#020617; transform:scale(1.05); }
+.btn-ghost { background:transparent; border:2px solid #fff; color:#fff; box-shadow:0 0 8px #fff; }
+.btn-ghost:hover { background:#d4af37; color:#020617; transform:scale(1.05); box-shadow:0 0 12px #d4af37; }
 .category { display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin:20px 0; }
 .chip { padding:8px 16px; border-radius:50px; border:1px solid #fff; cursor:pointer; transition:0.3s; }
 .chip.active, .chip:hover { background:#d4af37; border-color:#d4af37; color:#020617; }
 .grid { display:grid; grid-template-columns:1fr; gap:20px; }
 @media(min-width:700px){ .grid{grid-template-columns:repeat(2,1fr);} }
 @media(min-width:1000px){ .grid{grid-template-columns:repeat(3,1fr);} }
-.card { background:#071026; padding:16px; border-radius:12px; transition:transform 0.3s, box-shadow 0.3s; cursor:pointer; }
+.card { background:#071026; padding:16px; border-radius:12px; transition:transform 0.3s, box-shadow 0.3s; cursor:pointer; position:relative; }
 .card:hover { transform:translateY(-5px); box-shadow:0 10px 20px rgba(0,0,0,0.5); }
 .card img { width:100%; border-radius:8px; }
-.product-title { font-weight:bold; margin:10px 0; }
-.price { color:#d4af37; font-weight:bold; margin-bottom:10px; }
+.product-title { font-weight:bold; margin:10px 0; font-size:18px; }
+.price { color:#d4af37; font-weight:bold; margin-bottom:4px; font-size:16px; text-decoration:line-through; text-shadow: 0 0 8px #fff; }
+.discount { color:#1f6feb; font-weight:bold; margin-bottom:10px; font-size:18px; text-shadow:0 0 12px #1f6feb; animation: glow 1.5s infinite alternate; }
+@keyframes glow { from {text-shadow:0 0 8px #1f6feb;} to {text-shadow:0 0 20px #4b8cff;} }
 .colors { display:flex; gap:6px; margin:6px 0; }
 .color-dot { width:24px; height:24px; border-radius:50%; border:1px solid #fff; position:relative; cursor:pointer; transition:0.3s; }
 .color-dot:hover { transform:scale(1.2); }
@@ -39,7 +41,7 @@ main { padding-top:80px; max-width:1200px; margin:0 auto; }
 .ceo { display:flex; gap:20px; margin:40px 0; background:#071524; padding:20px; border-radius:12px; transition:0.3s; }
 .ceo img { width:120px; border-radius:12px; }
 .ceo div h3{margin:0 0 10px 0;}
-footer { padding:40px 20px; border-top:1px solid #444; text-align:center; color:#98a0ad; }
+footer { padding:40px 20px; border-top:1px solid #444; text-align:center; color:#98a0ad; background:#020617; }
 @media(max-width:800px){ .ceo { flex-direction:column; align-items:center; text-align:center; } .hamburger { display:block; } nav { display:none; flex-direction:column; gap:10px; background:#020617; position:absolute; top:60px; right:20px; padding:10px; border-radius:8px; } }
 </style>
 </head>
@@ -97,69 +99,74 @@ footer { padding:40px 20px; border-top:1px solid #444; text-align:center; color:
 </footer>
 
 <script>
-  const hamburger = document.getElementById('hamburger');
-  const menu = document.getElementById('menu');
-  hamburger.addEventListener('click',()=>menu.style.display = menu.style.display==='flex'?'none':'flex');
+const hamburger = document.getElementById('hamburger');
+const menu = document.getElementById('menu');
+hamburger.addEventListener('click',()=>menu.style.display = menu.style.display==='flex'?'none':'flex');
 
-  const products = [
-    {id:1,cat:'iphones',title:'iPhone 12',price:4999,colors:['Branco','Preto','Cinza'],img:'https://images.unsplash.com/photo-1603898037225-3f3a7f26f2a7?q=80&w=800'},
-    {id:2,cat:'iphones',title:'iPhone 13',price:5999,colors:['Branco','Preto','Coral'],img:'https://images.unsplash.com/photo-1631021130418-bf98802060cd?q=80&w=800'},
-    {id:3,cat:'iphones',title:'iPhone 14',price:6999,colors:['Azul','Preto','Amarelo'],img:'https://images.unsplash.com/photo-1663165174549-2d57f8d60f73?q=80&w=800'},
-    {id:4,cat:'iphones',title:'iPhone 15',price:8499,colors:['Roxo','Rosa','Preto'],img:'https://images.unsplash.com/photo-1681283704851-0c0f847f5f2f?q=80&w=800'},
-    {id:5,cat:'iphones',title:'iPhone 16',price:9999,colors:['Verde','Vermelho','Preto'],img:'https://images.unsplash.com/photo-1689712022673-8f64ffea5df2?q=80&w=800'},
-    {id:6,cat:'iphones',title:'iPhone 17 Pro',price:12499,colors:['Grafite','Branco','Indigo'],img:'https://images.unsplash.com/photo-1689613480220-c805ec52d2f5?q=80&w=800'},
-    {id:7,cat:'watches',title:'Apple Watch SE',price:1999,colors:['Preto','Vermelho','Amarelo'],img:'https://images.unsplash.com/photo-1618220848365-7b0d7a824b3f?q=80&w=800'},
-    {id:8,cat:'watches',title:'Apple Watch 8',price:2999,colors:['Grafite','Lilac','Verde'],img:'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?q=80&w=800'},
-    {id:9,cat:'watches',title:'Apple Watch Ultra',price:4999,colors:['Grafite','Laranja'],img:'https://images.unsplash.com/photo-1629376407190-9c2a72a6d6b1?q=80&w=800'},
-    {id:10,cat:'ipads',title:'iPad 9ª geração',price:2499,colors:['Prateado','Preto'],img:'https://images.unsplash.com/photo-1536305030012-6c9b02a1e2b0?q=80&w=800'},
-    {id:11,cat:'ipads',title:'iPad Air',price:3999,colors:['Azul','Rosa'],img:'https://images.unsplash.com/photo-1612831661792-c66f61c8a7f6?q=80&w=800'},
-    {id:12,cat:'ipads',title:'iPad Pro 12.9"',price:7999,colors:['Cinza Espacial','Prata'],img:'https://images.unsplash.com/photo-1517336714731-489689fd1ca8?q=80&w=800'},
-    {id:13,cat:'macbooks',title:'MacBook Air M1',price:6499,colors:['Prata','Cinza Espacial'],img:'https://images.unsplash.com/photo-1612831455541-1f3d7f8c2d48?q=80&w=800'},
-    {id:14,cat:'macbooks',title:'MacBook Pro 13"',price:10499,colors:['Cinza Espacial'],img:'https://images.unsplash.com/photo-1612832021522-4aa7df2b1d5c?q=80&w=800'},
-    {id:15,cat:'macbooks',title:'MacBook Pro 16"',price:17499,colors:['Cinza Espacial'],img:'https://images.unsplash.com/photo-1606813902795-3b8e1b8b2d9b?q=80&w=800'},
-    {id:16,cat:'consoles',title:'PlayStation 5',price:4999,colors:['Branco/Preto'],img:'https://images.unsplash.com/photo-1606813902795-3b8e1b8b2d9b?q=80&w=800'},
-    {id:17,cat:'consoles',title:'Xbox Series X',price:4799,colors:['Preto'],img:'https://images.unsplash.com/photo-1606813920127-0a32f4d6f012?q=80&w=800'},
-    {id:18,cat:'consoles',title:'Nintendo Switch',price:2999,colors:['Vermelho/Azul','Cinza'],img:'https://images.unsplash.com/photo-1618354691948-17c6711e5f08?q=80&w=800'}
-  ];
+const products = [
+  {id:1,cat:'iphones',title:'iPhone 12',price:4999,colors:['Branco','Preto','Cinza'],img:'https://images.unsplash.com/photo-1603898037225-3f3a7f26f2a7?q=80&w=800'},
+  {id:2,cat:'iphones',title:'iPhone 13',price:5999,colors:['Branco','Preto','Coral'],img:'https://images.unsplash.com/photo-1631021130418-bf98802060cd?q=80&w=800'},
+  {id:3,cat:'iphones',title:'iPhone 14',price:6999,colors:['Azul','Preto','Amarelo'],img:'https://images.unsplash.com/photo-1663165174549-2d57f8d60f73?q=80&w=800'},
+  {id:4,cat:'iphones',title:'iPhone 15',price:8499,colors:['Roxo','Rosa','Preto'],img:'https://images.unsplash.com/photo-1681283704851-0c0f847f5f2f?q=80&w=800'},
+  {id:5,cat:'iphones',title:'iPhone 15 PRO',price:9499,colors:['Grafite','Prata','Dourado'],img:'https://images.unsplash.com/photo-1689613480220-c805ec52d2f5?q=80&w=800'},
+  {id:6,cat:'iphones',title:'iPhone 15 PRO MAX',price:11499,colors:['Grafite','Prata','Dourado'],img:'https://images.unsplash.com/photo-1689712022673-8f64ffea5df2?q=80&w=800'},
+  {id:7,cat:'iphones',title:'iPhone 16 PRO',price:12999,colors:['Preto','Branco','Roxo'],img:'https://images.unsplash.com/photo-1689825602240-b6f84f4a0d44?q=80&w=800'},
+  {id:8,cat:'iphones',title:'iPhone 16 PRO MAX',price:14999,colors:['Preto','Branco','Roxo'],img:'https://images.unsplash.com/photo-1689825602241-6f86f4a2d1a2?q=80&w=800'},
+  {id:9,cat:'watches',title:'Apple Watch SE',price:1999,colors:['Preto','Vermelho','Amarelo'],img:'https://images.unsplash.com/photo-1618220848365-7b0d7a824b3f?q=80&w=800'},
+  {id:10,cat:'watches',title:'Apple Watch 8',price:2999,colors:['Grafite','Lilac','Verde'],img:'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?q=80&w=800'},
+  {id:11,cat:'watches',title:'Apple Watch Ultra',price:4999,colors:['Grafite','Laranja'],img:'https://images.unsplash.com/photo-1629376407190-9c2a72a6d6b1?q=80&w=800'},
+  {id:12,cat:'ipads',title:'iPad 9ª geração',price:2499,colors:['Prateado','Preto'],img:'https://images.unsplash.com/photo-1536305030012-6c9b02a1e2b0?q=80&w=800'},
+  {id:13,cat:'ipads',title:'iPad Air',price:3999,colors:['Azul','Rosa'],img:'https://images.unsplash.com/photo-1612831661792-c66f61c8a7f6?q=80&w=800'},
+  {id:14,cat:'ipads',title:'iPad Pro 12.9"',price:7999,colors:['Cinza Espacial','Prata'],img:'https://images.unsplash.com/photo-1517336714731-489689fd1ca8?q=80&w=800'},
+  {id:15,cat:'macbooks',title:'MacBook Air M1',price:6499,colors:['Prata','Cinza Espacial'],img:'https://images.unsplash.com/photo-1612831455541-1f3d7f8c2d48?q=80&w=800'},
+  {id:16,cat:'macbooks',title:'MacBook Pro 13"',price:10499,colors:['Cinza Espacial'],img:'https://images.unsplash.com/photo-1612832021522-4aa7df2b1d5c?q=80&w=800'},
+  {id:17,cat:'macbooks',title:'MacBook Pro 16"',price:17499,colors:['Cinza Espacial'],img:'https://images.unsplash.com/photo-1606813902795-3b8e1b8b2d9b?q=80&w=800'},
+  {id:18,cat:'consoles',title:'PlayStation 5',price:4999,colors:['Branco/Preto'],img:'https://images.unsplash.com/photo-1606813902795-3b8e1b8b2d9b?q=80&w=800'},
+  {id:19,cat:'consoles',title:'Xbox Series X',price:4799,colors:['Preto'],img:'https://images.unsplash.com/photo-1606813920127-0a32f4d6f012?q=80&w=800'},
+  {id:20,cat:'consoles',title:'Nintendo Switch',price:2999,colors:['Vermelho/Azul','Cinza'],img:'https://images.unsplash.com/photo-1618354691948-17c6711e5f08?q=80&w=800'}
+];
 
-  const grid = document.getElementById('produtos');
-  const chips = document.querySelectorAll('.chip');
+const grid = document.getElementById('produtos');
+const chips = document.querySelectorAll('.chip');
 
-  function renderProducts(filter='all'){
-    grid.innerHTML='';
-    const filtered = filter==='all'?products:products.filter(p=>p.cat===filter);
-    filtered.forEach(p=>{
-      const card = document.createElement('div');
-      card.className='card';
-      card.innerHTML=`
-        <img src="${p.img}" alt="${p.title}">
-        <div class="product-title">${p.title}</div>
-        <div class="price">R$ ${p.price.toLocaleString('pt-BR')}</div>
-        <div class="colors">${p.colors.map(c=>`<div class="color-dot" title="${c}"><div class="tooltip">${c}</div></div>`).join('')}</div>
-        <button class="btn btn-ghost" onclick="alert('Compra simulada: ${p.title}')">BUY</button>
-      `;
-      grid.appendChild(card);
-    });
-
-    document.querySelectorAll('.color-dot').forEach(dot=>{
-      dot.addEventListener('mouseenter',()=>dot.querySelector('.tooltip').style.display='block');
-      dot.addEventListener('mouseleave',()=>dot.querySelector('.tooltip').style.display='none');
-    });
-  }
-
-  chips.forEach(chip=>{
-    chip.addEventListener('click',()=>{
-      chips.forEach(c=>c.classList.remove('active'));
-      chip.classList.add('active');
-      renderProducts(chip.dataset.cat);
-    });
+function renderProducts(filter='all'){
+  grid.innerHTML='';
+  const filtered = filter==='all'?products:products.filter(p=>p.cat===filter);
+  filtered.forEach(p=>{
+    const discountPrice = (p.price*0.55).toFixed(2);
+    const card = document.createElement('div');
+    card.className='card';
+    card.innerHTML=`
+      <img src="${p.img}" alt="${p.title}">
+      <div class="product-title">${p.title}</div>
+      <div class="price">R$ ${p.price.toLocaleString('pt-BR')}</div>
+      <div class="discount">R$ ${Number(discountPrice).toLocaleString('pt-BR')} (-45%)</div>
+      <div class="colors">${p.colors.map(c=>`<div class="color-dot" title="${c}"><div class="tooltip">${c}</div></div>`).join('')}</div>
+      <button class="btn btn-ghost" onclick="alert('Compra simulada: ${p.title}')">BUY</button>
+    `;
+    grid.appendChild(card);
   });
 
-  renderProducts();
+  document.querySelectorAll('.color-dot').forEach(dot=>{
+    dot.addEventListener('mouseenter',()=>dot.querySelector('.tooltip').style.display='block');
+    dot.addEventListener('mouseleave',()=>dot.querySelector('.tooltip').style.display='none');
+  });
+}
 
-  function scrollToProducts(){
-    document.getElementById('produtos').scrollIntoView({behavior:'smooth'});
-  }
+chips.forEach(chip=>{
+  chip.addEventListener('click',()=>{
+    chips.forEach(c=>c.classList.remove('active'));
+    chip.classList.add('active');
+    renderProducts(chip.dataset.cat);
+  });
+});
+
+renderProducts();
+
+function scrollToProducts(){
+  document.getElementById('produtos').scrollIntoView({behavior:'smooth'});
+}
 </script>
 </body>
 </html>
+
